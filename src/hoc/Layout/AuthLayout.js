@@ -15,15 +15,17 @@
  */
 
  import React from 'react';
- import AppTitle from '../../components/UI/AppTitle/AppTitle'
+ import AppTitle from '../../components/UI/AppTitle/AppTitle';
+ import classes from './AuthLayout.module.css';
 
  const AuthLayout = (props)=>{
-     return <React.Fragment>
+     return <div className={classes.Layout}>
         <AppTitle/>
+        
          <div>
              {props.children}
          </div>
-     </React.Fragment>
+     </div>
  }
 
  export default AuthLayout

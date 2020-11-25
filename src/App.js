@@ -4,7 +4,9 @@ import AuthLayout from './hoc/Layout/AuthLayout';
 function App() {
   return (
     <div className="App">
-    <AuthLayout/>
+    <AuthLayout>
+      <div>Test</div>
+    </AuthLayout>
     </div>
   );
 }

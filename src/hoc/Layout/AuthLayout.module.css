@@ -1,0 +1,6 @@
+.Layout {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row;
+    flex: 1 1 
+}
