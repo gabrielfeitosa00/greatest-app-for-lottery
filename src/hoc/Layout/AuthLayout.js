@@ -22,7 +22,7 @@
      return <div className={classes.Layout}>
         <AppTitle/>
         
-         <div>
+         <div className={classes.Content}>
              {props.children}
          </div>
      </div>

@@ -10,7 +10,6 @@ const AppTitle = (props) => {
     height: 38px;
     color:white;
     font-size:1.5em;
-    padding: 0;
     box-sizing:border-box;
 
     `

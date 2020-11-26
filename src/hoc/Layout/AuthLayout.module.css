@@ -1,6 +1,16 @@
 .Layout {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-flow: row;
-    flex: 1 1 
+    margin: 12px 15px;
+}
+
+.Content{
+    width: 30%;
+}
+
+@media(max-width:600px){
+    .Layout{
+        flex-flow: column;
+    }
 }
