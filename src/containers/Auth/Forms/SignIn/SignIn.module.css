@@ -11,7 +11,7 @@
 }
 .Form{
     border: solid 1px #DDDDDD;
-    box-shadow: 0 3px #000014 25px;
+    box-shadow: 0 3px 25px #000014 ;
     padding: 10px;
     border-radius: 14px;
     display: flex;

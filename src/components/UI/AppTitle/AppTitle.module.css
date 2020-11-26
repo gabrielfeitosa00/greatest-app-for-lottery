@@ -31,3 +31,10 @@
     padding: 5px 8px;
     box-sizing: border-box;
 }
+
+@media(max-width:600px){
+    .AppTitle{
+        width: 100%;
+        height: 70%;
+    }
+}

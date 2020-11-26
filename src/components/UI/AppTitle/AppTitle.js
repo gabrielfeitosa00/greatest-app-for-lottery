@@ -6,7 +6,7 @@ const AppTitle = (props) => {
     background:#B5C401;
     border-radius:100px;
     text-align: center;
-    width:15%;
+    width:100px;
     height: 38px;
     color:white;
     font-size:1.5em;

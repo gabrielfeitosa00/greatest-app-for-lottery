@@ -1,7 +1,11 @@
 import React from "react";
 import { useFormik } from "formik";
 import classes from "./SignIn.module.css";
-import styled from "styled-components";
+import FormButton from '../../../../components/UI/StyledComponents/StyledButton';
+import FormInput from '../../../../components/UI/StyledComponents/StyledInput' 
+
+
+
 
 const SignIn = (props) => {
   const formik = useFormik({
@@ -13,32 +17,14 @@ const SignIn = (props) => {
       console.log(values);
     },
   });
-  const StyledSubmitButton = styled.button`
-    background-color: transparent;
-    border: none;
-    color: #b5c401;
-    outline: none;
-    cursor: pointer;
-    font: inherit;
-    padding: 10px;
-    margin: 10px;
-    font-weight: bold;
-    font-style:italic;
-    font-size: 35px;
-  `;
-  const StyledInput = styled.input`
-    background-color: transparent;
-    border: none;
-    padding: 20px 10px;
-    border-bottom:solid 2px #EBEBEB;
-    font:italic bold 17px/70px;
-    color:#9D9D9D;
-  `;
+
+  
+
   return (
     <div className={classes.FormContainer}>
         Authentication
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
-        <StyledInput
+        <FormInput
           name="email"
           type="email"
           onChange={formik.handleChange}
@@ -46,7 +32,7 @@ const SignIn = (props) => {
           value={formik.values.email}
           placeholder="Email"
         />
-        <StyledInput
+        <FormInput
           name="password"
           type="password"
           onChange={formik.handleChange}
@@ -55,9 +41,9 @@ const SignIn = (props) => {
           placeholder="Password"
         />
         <p>I forgot my password</p>
-        <StyledSubmitButton type="submit"> Log In {">"}</StyledSubmitButton>
+        <FormButton type="submit"> Log In {">"}</FormButton>
       </form>
-      <StyledSubmitButton>SignUp {'=>'}</StyledSubmitButton>
+      <FormButton>SignUp {'=>'}</FormButton>
     
     </div>
   );

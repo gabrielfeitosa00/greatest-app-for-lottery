@@ -13,4 +13,8 @@
     .Layout{
         flex-flow: column;
     }
+
+    .Content{
+        width: 100%;
+    }
 }
