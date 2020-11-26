@@ -1,11 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
 import classes from "./SignIn.module.css";
-import FormButton from '../../../../components/UI/StyledComponents/StyledButton';
-import FormInput from '../../../../components/UI/StyledComponents/StyledInput' 
-
-
-
+import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
+import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
+import { VscArrowRight } from "react-icons/vsc";
 
 const SignIn = (props) => {
   const formik = useFormik({
@@ -18,11 +16,9 @@ const SignIn = (props) => {
     },
   });
 
-  
-
   return (
     <div className={classes.FormContainer}>
-        Authentication
+      Authentication
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
         <FormInput
           name="email"
@@ -40,11 +36,21 @@ const SignIn = (props) => {
           value={formik.values.password}
           placeholder="Password"
         />
-        <p>I forgot my password</p>
-        <FormButton type="submit"> Log In {">"}</FormButton>
+        <p
+          onClick={() => {
+            console.log("Do not submit mf");
+          }}
+        >
+          I forgot my password
+        </p>
+        <FormButton type="submit">
+          {" "}
+          Log In <VscArrowRight style={{ "vertical-align": "middle" }} />
+        </FormButton>
       </form>
-      <FormButton>SignUp {'=>'}</FormButton>
-    
+      <FormButton>
+        SignUp <VscArrowRight style={{ "vertical-align": "middle" }} />{" "}
+      </FormButton>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
 background-color: transparent;
 border: none;
-color: #b5c401;
+color: ${props => props.type==='submit'? '#b5c401':'#707070'} ;
 outline: none;
 cursor: pointer;
 font: inherit;
