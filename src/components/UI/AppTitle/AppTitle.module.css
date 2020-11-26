@@ -32,9 +32,17 @@
     box-sizing: border-box;
 }
 
-@media(max-width:600px){
+@media(max-width:800px){
     .AppTitle{
         width: 100%;
         height: 70%;
+    }
+
+    .FirstTitle{
+        font-size: 2em;
+    }
+
+    .SecondTitle{
+        font-size: 2.5em;
     }
 }

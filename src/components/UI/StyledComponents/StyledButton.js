@@ -12,6 +12,9 @@ margin: 10px;
 font-weight: bold;
 font-style:italic;
 font-size: 35px;
+@media(max-width:800px){
+  font-size: 17px
+}
 `;
 
 const FormButton = (props)=>{

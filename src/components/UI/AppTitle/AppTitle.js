@@ -11,6 +11,9 @@ const AppTitle = (props) => {
     color:white;
     font-size:1.5em;
     box-sizing:border-box;
+    @media(max-width:800){
+      font-size:0.8em
+    }
 
     `
   return (

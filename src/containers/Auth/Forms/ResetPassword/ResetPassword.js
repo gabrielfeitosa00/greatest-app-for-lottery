@@ -38,7 +38,7 @@ const ResetPassword = (props) => {
       </form>
       <FormButton>
         <UnStyledLink to="/">
-          <VscArrowLeft style={{ "vertical-align": "middle" }} /> Back{" "}
+          <VscArrowLeft style={{ "verticalAlign": "middle" }} /> Back{" "}
         </UnStyledLink>
       </FormButton>
     </div>

@@ -42,12 +42,12 @@ const SignIn = (props) => {
         </p>
         <FormButton type="submit">
           {" "}
-          Log In <VscArrowRight style={{ "vertical-align": "middle" }} />
+          Log In <VscArrowRight style={{ "verticalAlign": "middle" }} />
         </FormButton>
       </form>
       <FormButton>
         <UnStyledLink to="/register">
-          SignUp <VscArrowRight style={{ "vertical-align": "middle" }} />{" "}
+          SignUp <VscArrowRight style={{ "verticalAlign": "middle" }} />{" "}
         </UnStyledLink>
       </FormButton>
     </div>
