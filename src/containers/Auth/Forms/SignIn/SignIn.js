@@ -4,6 +4,7 @@ import classes from "./SignIn.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight } from "react-icons/vsc";
+import UnStyledLink from "../../../../components/UI/UnStyledLink/UnStyledLink";
 
 const SignIn = (props) => {
   const formik = useFormik({
@@ -36,12 +37,8 @@ const SignIn = (props) => {
           value={formik.values.password}
           placeholder="Password"
         />
-        <p
-          onClick={() => {
-            console.log("Do not submit mf");
-          }}
-        >
-          I forgot my password
+        <p>
+          <UnStyledLink to="/reset">I forgot my password</UnStyledLink>
         </p>
         <FormButton type="submit">
           {" "}
@@ -49,7 +46,9 @@ const SignIn = (props) => {
         </FormButton>
       </form>
       <FormButton>
-        SignUp <VscArrowRight style={{ "vertical-align": "middle" }} />{" "}
+        <UnStyledLink to="/register">
+          SignUp <VscArrowRight style={{ "vertical-align": "middle" }} />{" "}
+        </UnStyledLink>
       </FormButton>
     </div>
   );

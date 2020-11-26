@@ -9,13 +9,6 @@
     font-size: 35px;
     
 }
-
- .FormContainer p{
-    text-align: right;
-    font-size: 17px;
-    cursor: pointer;
-    color: #C1C1C1;
- }
 .Form{
     border: solid 1px #DDDDDD;
     box-shadow: 0 3px 25px #000014 ;
@@ -26,4 +19,3 @@
     justify-content: space-around;
     margin: 20px 0;
 }
-
