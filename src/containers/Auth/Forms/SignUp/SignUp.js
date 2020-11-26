@@ -5,6 +5,7 @@ import FormButton from "../../../../components/UI/StyledComponents/StyledButton"
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/UI/UnStyledLink/UnStyledLink";
+import {signUpSchema} from "../../../../validation/FormSchemas";
 
 const SignUp = (props) => {
   const formik = useFormik({
@@ -13,6 +14,7 @@ const SignUp = (props) => {
       email: "",
       password: "",
     },
+    validationSchema:signUpSchema,
     onSubmit: (values) => {
       console.log(values);
     },
@@ -30,6 +32,7 @@ const SignUp = (props) => {
           value={formik.values.name}
           placeholder="Name"
         />
+        {formik.errors.name ? <p className={classes.Errors}>{formik.errors.name}</p> : null}
         <FormInput
           name="email"
           type="email"
@@ -38,6 +41,7 @@ const SignUp = (props) => {
           value={formik.values.email}
           placeholder="Email"
         />
+        {formik.errors.email ? <p className={classes.Errors}>{formik.errors.email}</p> : null}
         <FormInput
           name="password"
           type="password"
@@ -46,6 +50,7 @@ const SignUp = (props) => {
           value={formik.values.password}
           placeholder="Password"
         />
+        {formik.errors.password ? <p className={classes.Errors}>{formik.errors.password}</p> : null}
         <FormButton type="submit">
           {" "}
           Register <VscArrowRight style={{ "verticalAlign": "middle" }} />

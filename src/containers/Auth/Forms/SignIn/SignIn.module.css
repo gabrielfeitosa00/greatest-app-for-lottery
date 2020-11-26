@@ -16,6 +16,11 @@
     cursor: pointer;
     color: #C1C1C1;
  }
+ .FormContainer .Errors{
+     font-size: 13px;
+    cursor:none;
+    color:black;
+ }
 .Form{
     border: solid 1px #DDDDDD;
     box-shadow: 0 3px 25px #000014 ;

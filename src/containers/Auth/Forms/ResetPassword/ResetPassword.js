@@ -5,6 +5,7 @@ import FormButton from "../../../../components/UI/StyledComponents/StyledButton"
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/UI/UnStyledLink/UnStyledLink";
+import { resetSchema } from "../../../../validation/FormSchemas";
 
 const ResetPassword = (props) => {
   const formik = useFormik({
@@ -13,6 +14,7 @@ const ResetPassword = (props) => {
       email: "",
       password: "",
     },
+    validationSchema: resetSchema,
     onSubmit: (values) => {
       console.log(values);
     },
@@ -30,15 +32,17 @@ const ResetPassword = (props) => {
           value={formik.values.email}
           placeholder="Email"
         />
-
+        {formik.errors.email ? (
+          <p className={classes.Errors}>{formik.errors.email}</p>
+        ) : null}
         <FormButton type="submit">
           {" "}
-          Send Link <VscArrowRight style={{ "vertical-align": "middle" }} />
+          Send Link <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
       </form>
       <FormButton>
         <UnStyledLink to="/">
-          <VscArrowLeft style={{ "verticalAlign": "middle" }} /> Back{" "}
+          <VscArrowLeft style={{ verticalAlign: "middle" }} /> Back{" "}
         </UnStyledLink>
       </FormButton>
     </div>
