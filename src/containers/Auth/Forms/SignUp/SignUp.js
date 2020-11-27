@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import { useFormik } from "formik";
 import classes from "./SignUp.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
-import {signUpSchema} from "../../../../validation/FormSchemas";
+import { signUpSchema } from "../../../../validation/FormSchemas";
+
+import { SignUpAsync } from "../../../../store/actions/index";
+import { connect } from "react-redux";
 
 const SignUp = (props) => {
   const formik = useFormik({
@@ -14,9 +18,9 @@ const SignUp = (props) => {
       email: "",
       password: "",
     },
-    validationSchema:signUpSchema,
+    validationSchema: signUpSchema,
     onSubmit: (values) => {
-      console.log(values);
+      props.OnSignUp(values.name, values.email, values.password);
     },
   });
 
@@ -32,7 +36,9 @@ const SignUp = (props) => {
           value={formik.values.name}
           placeholder="Name"
         />
-        {formik.errors.name ? <p className={classes.Errors}>{formik.errors.name}</p> : null}
+        {formik.errors.name ? (
+          <p className={classes.Errors}>{formik.errors.name}</p>
+        ) : null}
         <FormInput
           name="email"
           type="email"
@@ -41,7 +47,9 @@ const SignUp = (props) => {
           value={formik.values.email}
           placeholder="Email"
         />
-        {formik.errors.email ? <p className={classes.Errors}>{formik.errors.email}</p> : null}
+        {formik.errors.email ? (
+          <p className={classes.Errors}>{formik.errors.email}</p>
+        ) : null}
         <FormInput
           name="password"
           type="password"
@@ -50,20 +58,27 @@ const SignUp = (props) => {
           value={formik.values.password}
           placeholder="Password"
         />
-        {formik.errors.password ? <p className={classes.Errors}>{formik.errors.password}</p> : null}
+        {formik.errors.password ? (
+          <p className={classes.Errors}>{formik.errors.password}</p>
+        ) : null}
         <FormButton colored type="submit" size="35px">
           {" "}
-          Register <VscArrowRight style={{ "verticalAlign": "middle" }} />
+          Register <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
       </form>
       <FormButton size="35px">
         <UnStyledLink to="/">
-          <VscArrowLeft style={{ "verticalAlign": "middle" }} />
+          <VscArrowLeft style={{ verticalAlign: "middle" }} />
           Back
         </UnStyledLink>
       </FormButton>
     </div>
   );
 };
-
-export default SignUp;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    OnSignUp: (name, email, password) =>
+      dispatch(SignUpAsync(name, email, password)),
+  };
+};
+export default connect(null,mapDispatchToProps)(SignUp);

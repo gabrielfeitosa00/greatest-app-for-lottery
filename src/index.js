@@ -6,9 +6,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { Provider } from "react-redux";
-import { createStore, combineReducers, compose } from "redux";
+import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import authReducer from "./store/reducers/auth";
 import { BrowserRouter } from "react-router-dom";
+import { watchAuth } from "./store/sagas/index";
+import createSagaMiddleware from "redux-saga";
 const composeEnhancers =
   process.env.NODE_ENV === "development"
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -17,8 +19,12 @@ const composeEnhancers =
 const rootStore = combineReducers({
   auth: authReducer,
 });
-
-const store = createStore(rootStore,composeEnhancers());
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootStore,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
+);
+sagaMiddleware.run(watchAuth);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
