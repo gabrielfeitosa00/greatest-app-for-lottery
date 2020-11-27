@@ -2,7 +2,7 @@ const initialState = {
     userName:'',
     password:'',
     email:'',
-    isAuth:false
+    isAuth:true
 }
 
 const reducer = (state=initialState,action)=>{
