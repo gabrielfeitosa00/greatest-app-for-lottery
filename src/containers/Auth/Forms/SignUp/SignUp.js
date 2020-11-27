@@ -4,7 +4,7 @@ import classes from "./SignUp.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
-import UnStyledLink from "../../../../components/UI/UnStyledLink/UnStyledLink";
+import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import {signUpSchema} from "../../../../validation/FormSchemas";
 
 const SignUp = (props) => {
@@ -51,12 +51,12 @@ const SignUp = (props) => {
           placeholder="Password"
         />
         {formik.errors.password ? <p className={classes.Errors}>{formik.errors.password}</p> : null}
-        <FormButton type="submit">
+        <FormButton colored type="submit" size="35px">
           {" "}
           Register <VscArrowRight style={{ "verticalAlign": "middle" }} />
         </FormButton>
       </form>
-      <FormButton>
+      <FormButton size="35px">
         <UnStyledLink to="/">
           <VscArrowLeft style={{ "verticalAlign": "middle" }} />
           Back

@@ -4,7 +4,7 @@ import classes from "./ResetPassword.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
-import UnStyledLink from "../../../../components/UI/UnStyledLink/UnStyledLink";
+import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { resetSchema } from "../../../../validation/FormSchemas";
 
 const ResetPassword = (props) => {
@@ -35,12 +35,12 @@ const ResetPassword = (props) => {
         {formik.errors.email ? (
           <p className={classes.Errors}>{formik.errors.email}</p>
         ) : null}
-        <FormButton type="submit">
+        <FormButton colored size="35px" type="submit">
           {" "}
           Send Link <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
       </form>
-      <FormButton>
+      <FormButton size="35px">
         <UnStyledLink to="/">
           <VscArrowLeft style={{ verticalAlign: "middle" }} /> Back{" "}
         </UnStyledLink>

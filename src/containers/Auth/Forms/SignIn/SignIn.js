@@ -4,7 +4,7 @@ import classes from "./SignIn.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight } from "react-icons/vsc";
-import UnStyledLink from "../../../../components/UI/UnStyledLink/UnStyledLink";
+import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import {signInSchema} from "../../../../validation/FormSchemas"
 
 const SignIn = (props) => {
@@ -45,12 +45,12 @@ const SignIn = (props) => {
         <p>
           <UnStyledLink to="/reset">I forgot my password</UnStyledLink>
         </p>
-        <FormButton type="submit">
+        <FormButton colored size="35px" type="submit">
           {" "}
           Log In <VscArrowRight style={{ "verticalAlign": "middle" }} />
         </FormButton>
       </form>
-      <FormButton>
+      <FormButton size="35px">
         <UnStyledLink to="/register">
           SignUp <VscArrowRight style={{ "verticalAlign": "middle" }} />{" "}
         </UnStyledLink>
