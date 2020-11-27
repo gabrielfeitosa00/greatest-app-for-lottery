@@ -15,7 +15,7 @@
  */
 
  import React from 'react';
- import AppTitle from '../../components/UI/AppTitle/AppTitle';
+ import AppTitle from '../../../components/UI/AppTitle/AppTitle';
  import classes from './AuthLayout.module.css';
 
  const AuthLayout = (props)=>{
