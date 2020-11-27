@@ -27,4 +27,4 @@ const AppTitle = (props) => {
   );
 };
 
-export default AppTitle;
+export default React.memo (AppTitle);
