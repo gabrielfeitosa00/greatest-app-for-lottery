@@ -1,9 +1,9 @@
 import React from 'react';
-
+import classes from './Toolbar.module.css';
 const Toolbar = (props)=>{
     return(
-        <header>
-            <div>
+        <header className={classes.Toolbar}>
+            <div className={classes.Logo}>
                 TGL
             </div>
             <div>

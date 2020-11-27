@@ -1,0 +1,26 @@
+.Toolbar{
+    height: 56px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 90;
+    border-bottom: 2px solid #EBEBEB;
+}
+
+.Toolbar nav{
+    height: 100%;
+}
+
+.Toolbar .Logo {
+    color: #707070;
+    font-size: 44px;
+    font-weight: bold;
+    border-bottom: solid 3px #B5C401;
+    border-radius: 6px;
+}

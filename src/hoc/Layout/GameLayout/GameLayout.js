@@ -7,11 +7,12 @@
  */
 import React from 'react';
 import Toolbar from '../../../components/Navegation/Toolbar/Toolbar';
+import classes from './GameLayout.module.css';
  const GameLayout = (props) =>{
     return(
         <React.Fragment>
         <Toolbar/>
-        <main>{props.children}</main>
+        <div className={classes.Content}>{props.children}</div>
         </React.Fragment>
     )
  }
