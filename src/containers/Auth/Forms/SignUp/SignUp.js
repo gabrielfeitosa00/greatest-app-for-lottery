@@ -7,7 +7,7 @@ import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signUpSchema } from "../../../../validation/FormSchemas";
-
+import {Redirect} from "react-router-dom";
 import { SignUpAsync } from "../../../../store/actions/index";
 import { connect } from "react-redux";
 
@@ -21,6 +21,7 @@ const SignUp = (props) => {
     validationSchema: signUpSchema,
     onSubmit: (values) => {
       props.OnSignUp(values.name, values.email, values.password);
+      <Redirect to='/'/>
     },
   });
 

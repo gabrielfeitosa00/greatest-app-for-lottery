@@ -12,7 +12,7 @@ const NavegationItems = (props) => {
       <NavegationItem destination="/" fontSize="20px">
         Account
       </NavegationItem>
-      <NavegationItem destination="/" fontSize="20px">
+      <NavegationItem destination="/logout" fontSize="20px">
         Log Out <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
       </NavegationItem>
     </ul>

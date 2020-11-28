@@ -8,7 +8,7 @@ const NoStyleLink = styled(NavLink)`
 `;
 
 const UnStyledLink = (props) => {
-  return <NoStyleLink {...props}>{props.children}</NoStyleLink>;
+  return <NoStyleLink exact{...props}>{props.children}</NoStyleLink>;
 };
 
 export default UnStyledLink;
