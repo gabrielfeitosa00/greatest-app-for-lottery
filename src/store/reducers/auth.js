@@ -19,9 +19,14 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.AUTH_SINGIN_SUCCESS:
       console.log(state);
-      return { ...state, isAuth: true };
+      return {
+        ...state,
+        email: action.email,
+        password: action.password,
+        isAuth: true,
+      };
     case actionTypes.AUTH_LOGOUT_SUCCESS:
-      console.log(state)
+      console.log(state);
       return { ...state, userName: "", password: "", email: "", isAuth: false };
     default:
       return state;

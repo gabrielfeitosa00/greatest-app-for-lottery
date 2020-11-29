@@ -1,4 +1,4 @@
-import { put, delay, call } from "redux-saga/effects";
+import { put } from "redux-saga/effects";
 import { SignUpStart, SignInSuccess,LogoutSuccess } from "../actions/index";
 
 export function* SignUp(action) {
@@ -21,7 +21,7 @@ export function* SignIn(action) {
   ) {
     yield console.log("fazer tratamento de erro direito dps");
   } else {
-    yield put(SignInSuccess());
+    yield put(SignInSuccess(action.email,action.password));
   }
 }
 
@@ -30,4 +30,14 @@ export function* Logout(){
   yield localStorage.removeItem("email");
   yield localStorage.removeItem("password");
   yield put(LogoutSuccess());
+}
+
+export function* CheckAuth(){
+  const currentEmail = yield localStorage.getItem("email")
+  if(!currentEmail){
+    yield put(LogoutSuccess());
+  } else {
+    const currentPassword = yield localStorage.getItem("password")
+    yield put(SignInSuccess(currentEmail,currentPassword))
+  }
 }

@@ -6,6 +6,7 @@ import {
   AUTH_SINGUP_START,
   AUTH_LOGOUT,
   AUTH_LOGOUT_SUCCESS,
+  AUTH_CHECK_STATE
 } from "./actionTypes";
 
 export const SignUpStart = (name, email, password) => {
@@ -21,9 +22,11 @@ export const SignUpAsync = (name, email, password) => {
   return { type: AUTH_SINGUP, name, email, password };
 };
 
-export const SignInSuccess = () => {
+export const SignInSuccess = (email,password) => {
   return {
     type: AUTH_SINGIN_SUCCESS,
+    email,
+    password
   };
 };
 
@@ -42,3 +45,7 @@ export const LogoutSuccess = () => {
 export const LogoutAsync = () => {
   return { type: AUTH_LOGOUT };
 };
+
+export const CheckAuthState = () =>{
+  return { type: AUTH_CHECK_STATE };
+}

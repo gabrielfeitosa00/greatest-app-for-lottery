@@ -1,1 +1,1 @@
-export {SignInSuccess,SignUpStart,SignUpAsync,SignInAsync,LogoutSuccess,LogoutAsync} from './auth'
+export {SignInSuccess,SignUpStart,SignUpAsync,SignInAsync,LogoutSuccess,LogoutAsync,CheckAuthState} from './auth'
