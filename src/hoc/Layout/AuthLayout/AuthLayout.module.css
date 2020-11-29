@@ -1,12 +1,16 @@
 .Layout {
+    flex: 1;
     display: flex;
     justify-content: space-between;
     flex-flow: row;
     margin: 12px 15px;
+    margin-bottom: 50px;
+    position: relative;
 }
 
 .Content{
     width: 30%;
+    padding-bottom: 50px;
 }
 
 @media(max-width:800px){

@@ -16,10 +16,10 @@ function App(props) {
   let appContent = (
     <AuthLayout>
       <Switch>
+      <Route exact path="/" component={SignIn} />
         <Route path="/register" component={SignUp} />
         <Route path="/reset" component={ResetPassword} />
-        
-        <Route path="/" component={SignIn} />
+ 
         
       </Switch>
     </AuthLayout>
@@ -29,7 +29,7 @@ function App(props) {
     appContent = (
       <GameLayout>
         <Switch>
-        <Route exact path="/home" render={() => <p>You're Authenticated yay!</p>} />
+        <Route path="/home" render={() => <p>You're Authenticated yay!</p>} />
           <Route path="/logout" component={Logout} />
           
         </Switch>

@@ -21,7 +21,7 @@ const SignUp = (props) => {
     validationSchema: signUpSchema,
     onSubmit: (values) => {
       props.OnSignUp(values.name, values.email, values.password);
-      <Redirect to='/'/>
+      props.history.push("/");
     },
   });
 

@@ -1,6 +1,10 @@
+.Layout {
+    flex: 1;
+    
+}
+
 .Content{
     margin-top: 85px;
-    padding: 15px 20px;
+    padding:  15px 20px;
     box-sizing: border-box;
-
 }
