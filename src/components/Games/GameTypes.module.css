@@ -1,0 +1,15 @@
+.GameTypes{
+    display: flex;
+    flex-flow: row;
+    border:solid 1px red;
+    box-sizing: border-box;
+    align-items: center;
+    flex: 1 0 300px;
+}
+
+@media(max-width:800px){
+    .GameTypes{
+        overflow-x: scroll;
+    }   
+    
+}
