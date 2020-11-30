@@ -11,6 +11,7 @@
     box-sizing: border-box;
     z-index: 90;
     border-bottom: 2px solid #EBEBEB;
+    border: solid 2px red;
 }
 
 .Toolbar nav{

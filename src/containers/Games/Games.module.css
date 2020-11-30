@@ -1,0 +1,36 @@
+.Games {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    color: #707070;
+    border: 1px solid red;
+}
+
+.GamesHeader {
+    border: 1px solid red;
+    width: 78%;
+    overflow: scroll;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.GamesHeader h3{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.GamesHeader p {
+    font-size: 17px;
+}
+
+@media(max-width:800px){
+    .Games{
+        flex-flow: column;
+    }
+
+    .GamesHeader{
+        width: 100%;
+    }
+}
