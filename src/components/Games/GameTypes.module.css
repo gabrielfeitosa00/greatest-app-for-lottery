@@ -1,7 +1,6 @@
 .GameTypes{
     display: flex;
     flex-flow: row;
-    border:solid 1px red;
     box-sizing: border-box;
     align-content: center;
     flex: 0 1 50%;

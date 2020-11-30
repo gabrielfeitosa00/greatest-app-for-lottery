@@ -6,7 +6,7 @@ import { VscArrowRight } from "react-icons/vsc";
 import StyledButton from "../../components/UI/StyledComponents/StyledButton";
 import UnStyledLink from "../../components/Navegation/UnStyledLink/UnStyledLink";
 import GameTypes from "../../components/Games/GameTypes";
-
+import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
   const { OnInitIngredients, types } = props;
   useEffect(() => {
@@ -15,10 +15,13 @@ const Games = (props) => {
   console.log(types);
   return (
     <div className={classes.Games}>
+      <div className={classes.GameContent}>
       <div className={classes.GamesHeader}>
         <h3>RECENT GAMES</h3>
         <p>Filters</p>
         <GameTypes types={types}/>
+      </div>
+      <GameCards/>
       </div>
 
       <StyledButton colored size="24px">

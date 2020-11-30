@@ -1,0 +1,15 @@
+.GameCards{
+    width: 70%;
+    display: flex;
+    flex-flow: column;
+    height: 58vh;
+    overflow-y: scroll;
+    border: 1px solid red;
+}
+
+@media(max-width:800px){
+    .GameCards{
+        width: 100%;
+    }
+
+}

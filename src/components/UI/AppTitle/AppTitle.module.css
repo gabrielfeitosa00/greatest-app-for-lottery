@@ -1,5 +1,5 @@
 .AppTitle{
-    border: solid 1px red;
+  
     padding: 10px;
     width: 42%;
     height: 100%;
@@ -15,7 +15,7 @@
 
 .FirstTitle{
     font-size: 3.5em;
-    border: solid 1px red;
+    
     display: flex;
     text-align: center;
     width: 45%;
@@ -25,7 +25,7 @@
 }
 .SecondTitle{
     font-size: 4em;
-    border: solid 1px red;
+    
     text-align: center;
     width: 60%;
     padding: 5px 8px;
