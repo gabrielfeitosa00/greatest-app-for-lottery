@@ -4,7 +4,7 @@
     justify-content: space-between;
     color: #707070;
     border: 1px solid red;
-    
+    align-items: center;
 }
 
 .GamesHeader {
@@ -34,7 +34,7 @@
 
     .GamesHeader{
         width: 100%;
-        overflow-x: scroll;
+        flex-flow: column;
     }
 
     .GamesHeader h3{
