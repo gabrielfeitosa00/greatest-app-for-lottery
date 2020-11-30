@@ -9,5 +9,6 @@ export {
 } from "./auth";
 
 export {
-    FetchGameType
+    FetchGameType,
+    SetGameType
 } from "./games"

@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import authReducer from "./store/reducers/auth";
+import gamesReducer from "./store/reducers/games";
 import { BrowserRouter } from "react-router-dom";
 import { watchAuth } from "./store/sagas/index";
 import createSagaMiddleware from "redux-saga";
@@ -18,6 +19,7 @@ const composeEnhancers =
 
 const rootStore = combineReducers({
   auth: authReducer,
+  games: gamesReducer
 });
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
