@@ -5,6 +5,7 @@ import classes from './NewGame.module.css';
 import ShoppingCart from '../../components/NewGame/ShoppingCart/ShoppingCart';
 import GameTypes from '../../components/Games/GameTypes';
 import CartButtons from '../../components/NewGame/CartButtons/CartButtons';
+import NumberGrid from '../../components/NewGame/NumberGrid/NumberGrid'
 const NewGame = ({OnInitGames,types})=>{
     useEffect(() => {
         OnInitGames();
@@ -17,6 +18,8 @@ const NewGame = ({OnInitGames,types})=>{
             Choose a game
             <GameTypes types={types}/>
         </div>
+        <NumberGrid/>
+
         <CartButtons/>
         
         </div>

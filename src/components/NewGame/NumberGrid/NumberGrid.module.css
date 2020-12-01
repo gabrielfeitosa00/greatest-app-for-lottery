@@ -1,0 +1,16 @@
+.NumberGrid{
+    margin-top: 10px;
+    margin-bottom: 23px;
+    border: 1px solid brown;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 8px;
+    align-items: center;
+    
+}
+
+@media(max-width:800px){
+    .NumberGrid{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -5,13 +5,13 @@
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    height: 75vh;
+    min-height: 75vh;
     color:#707070;
 }
 .Content{
     display: flex;
     flex-flow: column;
-    width: 75%;
+    width: 65%;
     height: 100%;
     border: solid 1px olivedrab;
 }
@@ -21,7 +21,7 @@
         padding: 0;
         flex-flow: column;
         align-items: center;
-        height: 80vh;
+        min-height: 100vh;
     }
 
     .Content{

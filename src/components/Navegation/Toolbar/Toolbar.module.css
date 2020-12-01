@@ -1,4 +1,5 @@
 .Toolbar{
+    background-color: #FFFFFF;
     height: 75px;
     width: 100%;
     position: fixed;
@@ -9,7 +10,7 @@
     align-items: center;
     padding: 15px 20px;
     box-sizing: border-box;
-    z-index: 90;
+    z-index: 100;
     border-bottom: 2px solid #EBEBEB;
     border: solid 2px red;
 }
