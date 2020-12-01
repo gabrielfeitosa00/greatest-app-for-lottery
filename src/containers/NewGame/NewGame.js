@@ -4,7 +4,7 @@ import { FetchGameType } from '../../store/actions/index';
 import classes from './NewGame.module.css';
 import ShoppingCart from '../../components/NewGame/ShoppingCart/ShoppingCart';
 import GameTypes from '../../components/Games/GameTypes';
-
+import CartButtons from '../../components/NewGame/CartButtons/CartButtons';
 const NewGame = ({OnInitGames,types})=>{
     useEffect(() => {
         OnInitGames();
@@ -17,6 +17,8 @@ const NewGame = ({OnInitGames,types})=>{
             Choose a game
             <GameTypes types={types}/>
         </div>
+        <CartButtons/>
+        
         </div>
         <ShoppingCart/>
     </div>)

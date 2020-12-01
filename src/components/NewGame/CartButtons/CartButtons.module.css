@@ -1,0 +1,24 @@
+.CartButtons{
+border:solid 1px cyan;
+display: flex;
+flex-flow: row;
+box-sizing: border-box;
+padding: 8px;
+}
+
+.CartButtons :nth-child(){
+    margin-right: auto;
+
+}
+.CartButtons :not(:last-child):not(:first-child){
+    margin-left: 8px;
+}
+.CartButtons :last-child{
+    margin-left: auto;
+}
+
+@media(max-width:800px){
+    .CartButtons :last-child{
+        margin-left: 8px;
+    }
+}
