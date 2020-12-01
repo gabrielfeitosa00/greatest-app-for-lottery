@@ -41,10 +41,23 @@ const Numbers = styled.div`
   font-style: italic;
 `;
 const Provider = styled.div`
-  color: ${(props) => props.color};
-  font-size: 16px;
-  font-weight: bold;
-  font-style: italic;
+   {
+    color: ${(props) => props.color};
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
+
+  p {
+    margin: 0 6px;
+    color: #707070;
+    font-size: 14px;
+    font-weight:normal;
+    font-style: italic;
+  }
 `;
 
 const DateText = styled.div`
@@ -52,17 +65,32 @@ const DateText = styled.div`
   font-style: italic;
 `;
 const GameCard = ({ color, numbers, name, date, price }) => {
-  console.log(Numbers);
+  let dateComponent = null;
+  if (date) {
+    dateComponent = (
+      <DateText>
+        {" "}
+        {date} - ({price})
+      </DateText>
+    );
+  }
+
+  let providerComponent = (
+    <Provider color={color}>
+      {" "}
+      {name} <p>{price}</p>
+    </Provider>
+  );
+  if (date) {
+    providerComponent = <Provider color={color}>{name}</Provider>;
+  }
   return (
     <StyledCard>
       <VerticalBar color={color} />
       <Content>
         <Numbers>{numbers}</Numbers>
-        <DateText>
-          {" "}
-          {date} - ({price})
-        </DateText>
-        <Provider color={color}>{name}</Provider>
+        {dateComponent}
+        {providerComponent}
       </Content>
     </StyledCard>
   );
