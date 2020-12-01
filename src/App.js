@@ -7,7 +7,7 @@ import ResetPassword from "./containers/Auth/Forms/ResetPassword/ResetPassword";
 
 import GameLayout from "./hoc/Layout/GameLayout/GameLayout";
 import Games from "./containers/Games/Games";
-
+import NewGame from "./containers/NewGame/NewGame";
 import Footer from "./components/UI/Footer/Footer";
 import Logout from "./containers/Auth/Logout/Logout";
 import { CheckAuthState } from "./store/actions/index";
@@ -36,8 +36,10 @@ function App(props) {
       <GameLayout>
         <Switch>
           <Route path="/logout" component={Logout} />
+          <Route path="/new-bet" component={NewGame} />
           <Route exact path="/" component={Games} />
-          <Redirect to="/"/>
+
+          <Redirect to="/" />
         </Switch>
       </GameLayout>
     );

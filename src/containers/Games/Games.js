@@ -25,7 +25,7 @@ const Games = (props) => {
       </div>
 
       <StyledButton colored size="24px">
-        <UnStyledLink to="/newbet">
+        <UnStyledLink to="/new-bet">
           New Bet <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
         </UnStyledLink>
       </StyledButton>

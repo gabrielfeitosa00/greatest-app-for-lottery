@@ -27,7 +27,7 @@ const Content = styled.div`
   padding: 0 10px;
   display: flex;
   flex-flow: column;
-  alingn-items: flex-start;
+  align-items: flex-start;
   justify-content: space-between;
   box-sizing: border-box;
 `;
@@ -65,12 +65,16 @@ const DateText = styled.div`
   font-style: italic;
 `;
 const GameCard = ({ color, numbers, name, date, price }) => {
+  const formatedPrice = new Intl.NumberFormat("pt", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
   let dateComponent = null;
   if (date) {
     dateComponent = (
       <DateText>
         {" "}
-        {date} - ({price})
+        {date} - ({formatedPrice})
       </DateText>
     );
   }
@@ -78,7 +82,7 @@ const GameCard = ({ color, numbers, name, date, price }) => {
   let providerComponent = (
     <Provider color={color}>
       {" "}
-      {name} <p>{price}</p>
+      {name} <p>{formatedPrice}</p>
     </Provider>
   );
   if (date) {
