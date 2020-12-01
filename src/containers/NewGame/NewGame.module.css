@@ -1,0 +1,31 @@
+
+.NewGame{
+    padding: 0 20px;
+    border: solid 1px purple;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    height: 75vh;
+    color:#707070;
+}
+.Content{
+    display: flex;
+    flex-flow: column;
+    width: 75%;
+    height: 100%;
+    border: solid 1px olivedrab;
+}
+
+@media(max-width:800px){
+    .NewGame{
+        padding: 0;
+        flex-flow: column;
+        align-items: center;
+        height: 80vh;
+    }
+
+    .Content{
+        width: 100%;
+        height: 70%;
+    }
+}

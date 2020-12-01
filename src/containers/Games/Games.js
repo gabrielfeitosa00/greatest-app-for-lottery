@@ -8,11 +8,11 @@ import UnStyledLink from "../../components/Navegation/UnStyledLink/UnStyledLink"
 import GameTypes from "../../components/Games/GameTypes";
 import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
-  const { OnInitIngredients, types } = props;
+  const {OnInitGames, types } = props;
   useEffect(() => {
-    OnInitIngredients();
-  }, [OnInitIngredients]);
-  console.log(types);
+    OnInitGames();
+  }, [OnInitGames]);
+
   return (
     <div className={classes.Games}>
       <div className={classes.GameContent}>
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    OnInitIngredients: () => {
+    OnInitGames: () => {
       dispatch(FetchGameType());
     },
   };
