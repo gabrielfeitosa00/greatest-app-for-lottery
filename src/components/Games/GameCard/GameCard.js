@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledCard = styled.section`
+  margin-bottom:12px;
   width: 65%;
-  border: 1px solid red;
+  border: 1px solid green;
   display: flex;
   flex-flow: row;
   height: 96px;
@@ -20,12 +21,49 @@ const VerticalBar = styled.div`
   width: 6px;
   height: 100%;
 `;
+const Content = styled.div`
+  border: solid 1px red;
 
-const GameCard = ({ color }) => {
+  padding: 0 10px;
+  display: flex;
+  flex-flow: column;
+  alingn-items: flex-start;
+  justify-content: space-between;
+  box-sizing: border-box;
+`;
+const Numbers = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  border: solid 1px red;
+  max-width: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+`;
+const Provider = styled.div`
+  color: ${(props) => props.color};
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+`;
+
+const DateText = styled.div`
+  font-size: 14px;
+  font-style: italic;
+`;
+const GameCard = ({ color, numbers, name, date, price }) => {
+  console.log(Numbers);
   return (
     <StyledCard>
       <VerticalBar color={color} />
-      Agiota
+      <Content>
+        <Numbers>{numbers}</Numbers>
+        <DateText>
+          {" "}
+          {date} - ({price})
+        </DateText>
+        <Provider color={color}>{name}</Provider>
+      </Content>
     </StyledCard>
   );
 };

@@ -9,6 +9,8 @@
 
 @media(max-width:800px){
     .GameCards{
+        margin-top: 10px;
+        height: 40vh;
         width: 100%;
     }
 
