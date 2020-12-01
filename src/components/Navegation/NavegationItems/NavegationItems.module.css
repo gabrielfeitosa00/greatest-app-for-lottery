@@ -7,3 +7,13 @@
     align-items: center;
     height: 100%;
 }
+
+.LogoutArrow{
+    vertical-align: "middle";
+}
+
+@media(max-width:800px){
+    .LogoutArrow{
+        display: none;
+    }
+}

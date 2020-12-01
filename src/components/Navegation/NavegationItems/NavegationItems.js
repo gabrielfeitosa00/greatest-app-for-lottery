@@ -13,7 +13,7 @@ const NavegationItems = (props) => {
         Account
       </NavegationItem>
       <NavegationItem destination="/logout" fontSize="20px">
-        Log Out <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
+        Log Out <VscArrowRight className={classes.LogoutArrow} />{" "}
       </NavegationItem>
     </ul>
   );
