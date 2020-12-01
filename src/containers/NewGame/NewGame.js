@@ -13,13 +13,12 @@ const NewGame = ({OnInitGames,types})=>{
     
     return(<div className={classes.NewGame}>
         <div className={classes.Content}>
-        <h3><strong>New Bet</strong> for (Provider here)</h3>
+        <h3><strong>NEW BET</strong> FOR (Provider here)</h3>
         <div className='betHeader'>
             Choose a game
             <GameTypes types={types}/>
         </div>
         <NumberGrid/>
-
         <CartButtons/>
         
         </div>

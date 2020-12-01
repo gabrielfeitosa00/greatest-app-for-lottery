@@ -4,8 +4,8 @@ import styled from "styled-components";
 const StyledNumber = styled.button`
   cursor:pointer;
   border: none;
-  width: 63px;
-  height: 63px;
+  width: 58px;
+  height: 58px;
   color: #ffffff;
   font-size:17px;
   font-weight:bold;

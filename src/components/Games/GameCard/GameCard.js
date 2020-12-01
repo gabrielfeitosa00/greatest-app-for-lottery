@@ -3,14 +3,12 @@ import styled from "styled-components";
 
 const StyledCard = styled.section`
   margin-bottom:12px;
-  width: 65%;
+  width: 100%;
   border: 1px solid green;
   display: flex;
   flex-flow: row;
   height: 96px;
-  @media(max-width:800px){
-    width:100%;
-    }
+
 }
 `;
 
