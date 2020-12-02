@@ -13,9 +13,9 @@ const NewGame = ({OnInitGames,types})=>{
     
     return(<div className={classes.NewGame}>
         <div className={classes.Content}>
-        <h3><strong>NEW BET</strong> FOR (Provider here)</h3>
+        <h3 style={{fontSize:'24px',paddingLeft:'8px'}}><strong>NEW BET</strong> FOR (Provider here)</h3>
         <div className='betHeader'>
-            Choose a game
+            <p style={{fontSize:'17px',paddingLeft:'8px'}}>Choose a game</p> 
             <GameTypes types={types}/>
         </div>
         <NumberGrid/>

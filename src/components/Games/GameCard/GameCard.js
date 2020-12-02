@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import {BsTrash} from "react-icons/bs";
 const StyledCard = styled.section`
   margin-bottom:12px;
   width: 100%;
@@ -21,7 +21,7 @@ const VerticalBar = styled.div`
 `;
 const Content = styled.div`
   border: solid 1px red;
-
+  width:inherit;
   padding: 0 10px;
   display: flex;
   flex-flow: column;
@@ -88,6 +88,7 @@ const GameCard = ({ color, numbers, name, date, price }) => {
   }
   return (
     <StyledCard>
+    {date? null :<BsTrash style= { {verticalAlign: 'middle', alignSelf:'center',width:'12%',height:'30%'} }/>}
       <VerticalBar color={color} />
       <Content>
         <Numbers>{numbers}</Numbers>
