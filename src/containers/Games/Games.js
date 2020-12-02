@@ -14,7 +14,9 @@ const Games = (props) => {
     OnInitGames();
   }, [OnInitGames]);
   const handleFilter = (fil)=>{
-      SetFilters(...filters,fil)
+      const newFilters = [...filters,fil]
+      SetFilters(newFilters)
+      console.log('myFilters: ' + filters)
   }
   return (
     <div className={classes.Games}>

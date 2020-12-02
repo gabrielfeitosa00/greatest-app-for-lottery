@@ -9,18 +9,19 @@ import NumberGrid from "../../components/NewGame/NumberGrid/NumberGrid";
 const NewGame = ({ OnInitGames, types }) => {
   const [currentType, setCurrentType] = useState(null);
   const selectGameType = useCallback((currType) => {
-    if (currType) {
-      setCurrentType(currType);
-      console.log("my Current Game" + currType.type);
-    }
-  }, []);
+      const selectedType = types.filter(typeItem => typeItem.type === currType)
+      setCurrentType(selectedType[0]);
+       console.log('selected Type ' + selectedType[0])
+      console.log("my Current Game" + currType);
+    
+  }, [types]);
 
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
 
   useEffect(() => {
-    if (types) selectGameType(types[0]);
+    if (types) selectGameType(types[0].type);
   }, [types, selectGameType]);
 
   return (

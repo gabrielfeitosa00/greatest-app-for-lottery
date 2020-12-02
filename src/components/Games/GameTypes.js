@@ -40,7 +40,7 @@ const GameTypes = (props) => {
         key={typeObj.type}
         name={typeObj.type}
         color={typeObj.color}
-        onClick={() => props.clickHandler(typeObj)}
+        onClick={() => props.clickHandler(typeObj.type)}
         active={checkActiveButtonsHandler(props.activeArray,typeObj.type)}
       />
     ));
