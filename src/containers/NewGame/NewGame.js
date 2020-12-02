@@ -32,7 +32,7 @@ const NewGame = ({ OnInitGames, types }) => {
     setCurrentBet(newBet);
   
   }
-  const clearBetHandle = ()=>{
+  const clearBetHandler = ()=>{
     setCurrentBet([])
   }
 
@@ -56,7 +56,7 @@ const NewGame = ({ OnInitGames, types }) => {
     if (types) selectGameType(types[0].type);
   }, [types, selectGameType]);
 
-  useEffect(()=>{console.log('teste' + currentBet)},[currentBet])
+  useEffect(()=>{console.log('teste:' + currentBet)},[currentBet])
   return (
     <div className={classes.NewGame}>
       <div className={classes.Content}>
@@ -89,7 +89,7 @@ const NewGame = ({ OnInitGames, types }) => {
           color={currentType ? currentType.color : null}
           total={currentType ? currentType.range : null}
         />
-        <CartButtons shouldBeDisabled={currentBet.length === 0 } />
+        <CartButtons shouldBeDisabled={currentBet.length === 0 } onClear = {clearBetHandler}/>
       </div>
       <ShoppingCart />
     </div>
