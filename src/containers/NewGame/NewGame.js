@@ -8,6 +8,8 @@ import CartButtons from "../../components/NewGame/CartButtons/CartButtons";
 import NumberGrid from "../../components/NewGame/NumberGrid/NumberGrid";
 const NewGame = ({ OnInitGames, types }) => {
   const [currentType, setCurrentType] = useState(null);
+  const [currentBet, setCurrentBet] = useState([]);
+  const [shoppingList,setShoppingList] = useState([])
   const selectGameType = useCallback((currType) => {
       const selectedType = types.filter(typeItem => typeItem.type === currType)
       setCurrentType(selectedType[0]);
@@ -15,7 +17,37 @@ const NewGame = ({ OnInitGames, types }) => {
       console.log("my Current Game" + currType);
     
   }, [types]);
+  const numberButtonHandler = (num)=>{
+    let newBet = [...currentBet]
+    if(currentBet.indexOf(num)!==-1 || currentBet.length >= currentType["max-number"]){
+      newBet = newBet.filter(betItem => betItem !== num)
+      console.log('filtered : ' + newBet)
+    } else {
+      newBet = newBet.concat(num);
+    }
+    
+    
+    
 
+    setCurrentBet(newBet);
+  
+  }
+  const clearBetHandle = ()=>{
+    setCurrentBet([])
+  }
+
+  const autocompleteBetHandler = () =>{
+
+  }
+
+  const purchaseBetHandler = ()=>{
+
+  }
+
+  const deleteBetHandler = (betId)=>{
+    const prevCart = [...shoppingList]
+    prevCart = prevCart.filter(cartItem => cartItem.id !== betId)
+  }
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
@@ -24,6 +56,7 @@ const NewGame = ({ OnInitGames, types }) => {
     if (types) selectGameType(types[0].type);
   }, [types, selectGameType]);
 
+  useEffect(()=>{console.log('teste' + currentBet)},[currentBet])
   return (
     <div className={classes.NewGame}>
       <div className={classes.Content}>
@@ -51,9 +84,12 @@ const NewGame = ({ OnInitGames, types }) => {
         </div>
         <NumberGrid
           max={currentType ? currentType["max-number"] : null}
+          numberClickHandler = { numberButtonHandler}
+          bet = {currentBet}
+          color={currentType ? currentType.color : null}
           total={currentType ? currentType.range : null}
         />
-        <CartButtons />
+        <CartButtons shouldBeDisabled={currentBet.length === 0 } />
       </div>
       <ShoppingCart />
     </div>

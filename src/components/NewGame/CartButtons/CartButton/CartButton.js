@@ -9,8 +9,9 @@ color: ${props=>props.filled? '#FFFFFF': '#27C383'};
 background-color:${props=>props.filled? '#27C383' :  '#FFFFFF'};
 border-radius: 10px;
 font-size:16px;
+cursor: ${props=>props.disabled ? 'not-allowed':'pointer'};
 @media(max-width:800px){
-    font-size:14px
+    font-size:14px 
 }
 
 ` 
