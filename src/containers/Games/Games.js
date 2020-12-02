@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { FetchGameType } from "../../store/actions/index";
 import { connect } from "react-redux";
 import classes from "./Games.module.css";
@@ -9,17 +9,20 @@ import GameTypes from "../../components/Games/GameTypes";
 import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
   const {OnInitGames, types } = props;
+  const [filters,SetFilters] = useState([])
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
-
+  const handleFilter = (fil)=>{
+      SetFilters(...filters,fil)
+  }
   return (
     <div className={classes.Games}>
       <div className={classes.GameContent}>
       <div className={classes.GamesHeader}>
         <h3>RECENT GAMES</h3>
         <p>Filters</p>
-        <GameTypes types={types}/>
+        <GameTypes types={types} clickHandler={handleFilter} activeArray={filters}/>
       </div>
       <GameCards/>
       </div>
@@ -35,6 +38,7 @@ const Games = (props) => {
 const mapStateToProps = (state) => {
   return {
     types: state.games.types,
+    // map prev games to props 
   };
 };
 const mapDispatchToProps = (dispatch) => {

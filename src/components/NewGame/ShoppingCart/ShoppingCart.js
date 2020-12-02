@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import StyledButton from "../../UI/StyledComponents/StyledButton";
 import GameCard from "../../Games/GameCard/GameCard";
@@ -43,6 +43,8 @@ const CartContent = styled.div`
 `;
 
 const ShoppingCart = (props) => {
+  const [totalPrice,setTotalPrice] = useState(0)
+  const [currentCart,setCurrentCart] = useState([])
   return (
     <Cart>
       <CartContent>
@@ -50,24 +52,7 @@ const ShoppingCart = (props) => {
           {" "}
           <strong>CART</strong>{" "}
         </p>
-        <GameCard
-          color="#7F3992"
-          numbers="01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15"
-          name="Lotofácil"
-          price="2.50"
-        />
-        <GameCard
-          color="#7F3992"
-          numbers="01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15"
-          name="Lotofácil"
-          price="2.50"
-        />
-        <GameCard
-          color="#7F3992"
-          numbers="01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15"
-          name="Lotofácil"
-          price="2.50"
-        />
+        
         <p>
           {" "}
           <strong>CART</strong> TOTAL: (PROPS TOTAL PRICE HERE)

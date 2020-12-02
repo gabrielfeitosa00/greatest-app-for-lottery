@@ -8,7 +8,7 @@ export function* InitGames(action) {
     const types = yield data.types;
     yield console.log(types);
     yield put(SetGameType(types));
-    yield put(SelectGameType(types[0].type));
+    // yield put(SelectGameType(types[0].type));
   } catch (error) {
     yield console.log(error);
   }

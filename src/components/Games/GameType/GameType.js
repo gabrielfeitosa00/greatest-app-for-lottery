@@ -21,6 +21,8 @@ background-color:  ${props=>props.active? props.color : '#F7F7F7'};
 `
 
 const GameType = (props)=>{
+  
+  console.log(props.active)
     return <GameTypeButton {...props}>{props.name}</GameTypeButton>
 }
 
