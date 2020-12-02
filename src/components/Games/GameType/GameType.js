@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const GameTypeButton = styled.button`
 padding:8px;
-
+cursor:pointer;
 box-sizing:border-box;
 border: 2px solid ${props=>props.color};
 font-weight:bold;

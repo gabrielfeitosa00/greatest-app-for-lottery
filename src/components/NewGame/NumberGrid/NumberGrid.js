@@ -1,73 +1,17 @@
 import React from "react";
 import classes from "./NumberGrid.module.css";
 import NumberButton from "./NumberButton/NumberButton";
-const NumberGrid = (props) => {
-  return (
-    <div className={classes.NumberGrid}>
-      {" "}
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton active activeColor='#27C383'>100</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-      <NumberButton>01</NumberButton>
-    </div>
-  );
+const NumberGrid = ({ max, total }) => {
+  console.log(max, total);
+  let gridContent = "loading...";
+  if (total) {
+    gridContent = new Array(total)
+      .fill(undefined)
+      .map((val, index) => (
+        <NumberButton key={index + 1}>{index + 1}</NumberButton>
+      ));
+  }
+  return <div className={classes.NumberGrid}>{gridContent}</div>;
 };
 
 export default NumberGrid;

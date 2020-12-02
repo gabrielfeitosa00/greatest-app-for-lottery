@@ -10,5 +10,6 @@ export {
 
 export {
     FetchGameType,
-    SetGameType
+    SetGameType,
+    SelectGameType,
 } from "./games"
