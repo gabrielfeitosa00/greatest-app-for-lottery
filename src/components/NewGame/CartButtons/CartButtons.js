@@ -5,7 +5,7 @@ import {HiOutlineShoppingCart} from 'react-icons/hi';
 
 const CartButtons = (props)=>{
     return (<div className={classes.CartButtons}>
-        <CartButton>Complete Game</CartButton>
+        <CartButton onClick={props.onComplete}>Complete Game</CartButton>
         <CartButton disabled={props.shouldBeDisabled} onClick={props.onClear}>Clear Game</CartButton>
         <CartButton disabled={props.shouldBeDisabled} filled> Add to Cart <HiOutlineShoppingCart/> </CartButton>
     </div>)

@@ -6,6 +6,7 @@ import ShoppingCart from "../../components/NewGame/ShoppingCart/ShoppingCart";
 import GameTypes from "../../components/Games/GameTypes";
 import CartButtons from "../../components/NewGame/CartButtons/CartButtons";
 import NumberGrid from "../../components/NewGame/NumberGrid/NumberGrid";
+import {genereteNumber} from "../../utils/utility"
 const NewGame = ({ OnInitGames, types }) => {
   const [currentType, setCurrentType] = useState(null);
   const [currentBet, setCurrentBet] = useState([]);
@@ -37,7 +38,10 @@ const NewGame = ({ OnInitGames, types }) => {
   }
 
   const autocompleteBetHandler = () =>{
+    let remeaningSlots =  currentType["max-number"]-currentBet.length
+    const generatedNumbers = genereteNumber(remeaningSlots,currentBet,currentType.range);
 
+    setCurrentBet(currentBet.concat(generatedNumbers));
   }
 
   const purchaseBetHandler = ()=>{
@@ -89,7 +93,7 @@ const NewGame = ({ OnInitGames, types }) => {
           color={currentType ? currentType.color : null}
           total={currentType ? currentType.range : null}
         />
-        <CartButtons shouldBeDisabled={currentBet.length === 0 } onClear = {clearBetHandler}/>
+        <CartButtons shouldBeDisabled={currentBet.length === 0 } onClear = {clearBetHandler} onComplete={autocompleteBetHandler}/>
       </div>
       <ShoppingCart />
     </div>
