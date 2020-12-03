@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/greatest-app-for-lottery/static/css/main.af76e162.chunk.css",
+    "main.css": "/greatest-app-for-lottery/static/css/main.2476e699.chunk.css",
     "main.js": "/greatest-app-for-lottery/static/js/main.ca9892f9.chunk.js",
     "main.js.map": "/greatest-app-for-lottery/static/js/main.ca9892f9.chunk.js.map",
     "runtime-main.js": "/greatest-app-for-lottery/static/js/runtime-main.e5d92654.js",
@@ -10,13 +10,13 @@
     "static/js/3.20b55020.chunk.js": "/greatest-app-for-lottery/static/js/3.20b55020.chunk.js",
     "static/js/3.20b55020.chunk.js.map": "/greatest-app-for-lottery/static/js/3.20b55020.chunk.js.map",
     "index.html": "/greatest-app-for-lottery/index.html",
-    "static/css/main.af76e162.chunk.css.map": "/greatest-app-for-lottery/static/css/main.af76e162.chunk.css.map",
+    "static/css/main.2476e699.chunk.css.map": "/greatest-app-for-lottery/static/css/main.2476e699.chunk.css.map",
     "static/js/2.74029438.chunk.js.LICENSE.txt": "/greatest-app-for-lottery/static/js/2.74029438.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e5d92654.js",
     "static/js/2.74029438.chunk.js",
-    "static/css/main.af76e162.chunk.css",
+    "static/css/main.2476e699.chunk.css",
     "static/js/main.ca9892f9.chunk.js"
   ]
 }
