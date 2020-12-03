@@ -1,7 +1,7 @@
 .NumberGrid{
     margin-top: 10px;
     margin-bottom: 23px;
-    border: 1px solid brown;
+    
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-gap: 8px;

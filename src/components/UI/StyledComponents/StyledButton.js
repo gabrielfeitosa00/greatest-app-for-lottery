@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
 background-color: transparent;
 border: none;
-color: ${props => props.colored? '#b5c401':'#707070'} ;
+color: ${props => props.colored? props.colored:'#707070'} ;
 outline: none;
-cursor: pointer;
+cursor: ${props=>props.disabled ? 'not-allowed' : 'pointer' };
 font: inherit;
 padding: 10px;
 margin: 10px;

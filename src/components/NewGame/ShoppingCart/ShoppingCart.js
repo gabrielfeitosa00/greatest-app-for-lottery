@@ -49,6 +49,7 @@ const CartContent = styled.div`
 const ShoppingCart = ({newBet,onPurchase,history}) => {
   const [totalPrice,setTotalPrice] = useState(0)
   const [currentCart,setCurrentCart] = useState([])
+  const minCart = useState(12)[0];
 
   const addItemHandler = useCallback ((newItem)=>{
     setCurrentCart(prevCurrentCart=>[...prevCurrentCart,newItem])
@@ -100,7 +101,7 @@ const ShoppingCart = ({newBet,onPurchase,history}) => {
       </CartContent>
 
       <CartSave onClick={buyItemsHandler}>
-        <StyledButton size="35px" colored>
+        <StyledButton size="35px" colored='#01AC66' disabled={totalPrice<minCart}>
           Save <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
         </StyledButton>
       </CartSave>

@@ -4,7 +4,7 @@
     flex-flow: row;
     justify-content: space-between;
     color: #707070;
-    border: 1px solid red;
+    
     align-items:flex-start;
     height:100%
 }

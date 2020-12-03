@@ -52,7 +52,7 @@ const SignIn = (props) => {
         <p>
           <UnStyledLink to="/reset">I forgot my password</UnStyledLink>
         </p>
-        <FormButton colored size="35px" type="submit">
+        <FormButton colored='#b5c401' size="35px" type="submit">
           {" "}
           Log In <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>

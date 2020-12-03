@@ -4,7 +4,7 @@
     flex-flow: column;
     min-height: 58vh;
 
-    border: 1px solid red;
+    
 }
 
 @media(max-width:800px){

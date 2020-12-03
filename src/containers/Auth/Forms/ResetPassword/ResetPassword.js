@@ -16,7 +16,7 @@ const ResetPassword = (props) => {
     },
     validationSchema: resetSchema,
     onSubmit: (values) => {
-      console.log(values);
+      props.history.push("/");
     },
   });
 
@@ -35,7 +35,7 @@ const ResetPassword = (props) => {
         {formik.errors.email ? (
           <p className={classes.Errors}>{formik.errors.email}</p>
         ) : null}
-        <FormButton colored size="35px" type="submit">
+        <FormButton colored='#B5C401' size="35px" type="submit">
           {" "}
           Send Link <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>

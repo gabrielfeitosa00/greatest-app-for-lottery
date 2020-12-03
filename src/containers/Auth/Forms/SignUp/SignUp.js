@@ -62,7 +62,7 @@ const SignUp = (props) => {
         {formik.errors.password ? (
           <p className={classes.Errors}>{formik.errors.password}</p>
         ) : null}
-        <FormButton colored type="submit" size="35px">
+        <FormButton colored='#b5c401' type="submit" size="35px">
           {" "}
           Register <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>

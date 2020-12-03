@@ -4,7 +4,7 @@ import { BsTrash } from "react-icons/bs";
 const StyledCard = styled.section`
   margin-bottom:12px;
   width: 100%;
-  border: 1px solid green;
+  
   display: flex;
   flex-flow: row;
   height: 96px;
@@ -20,7 +20,7 @@ const VerticalBar = styled.div`
   height: 100%;
 `;
 const Content = styled.div`
-  border: solid 1px red;
+  
   width: inherit;
   padding: 0 10px;
   display: flex;
@@ -32,7 +32,6 @@ const Content = styled.div`
 const Numbers = styled.div`
   display: flex;
   flex-wrap: wrap;
-  border: solid 1px red;
   max-width: inherit;
   font-size: 15px;
   font-weight: bold;
