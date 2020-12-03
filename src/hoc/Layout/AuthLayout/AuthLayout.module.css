@@ -1,9 +1,11 @@
 .Layout {
+    width: 1000px;
     flex: 1;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-flow: row;
-    margin: 12px 15px;
+    margin: 0 auto;
     margin-bottom: 50px;
     position: relative;
 }
@@ -15,6 +17,7 @@
 
 @media(max-width:800px){
     .Layout{
+        width: 100%;
         flex-flow: column;
     }
 
