@@ -11,6 +11,5 @@ export {
 export {
     FetchGameType,
     SetGameType,
-    SelectGameType,
     AddGame,
 } from "./games"

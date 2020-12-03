@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
-import { FetchGameType, SelectGameType } from "../../store/actions/index";
+import { FetchGameType} from "../../store/actions/index";
 import classes from "./NewGame.module.css";
 import ShoppingCart from "../../components/NewGame/ShoppingCart/ShoppingCart";
 import GameTypes from "../../components/Games/GameTypes";
@@ -134,9 +134,7 @@ const mapDispatchToProps = (dispatch) => {
     OnInitGames: () => {
       dispatch(FetchGameType());
     },
-    OnSelectGame: (selectedGame) => {
-      dispatch(SelectGameType(selectedGame));
-    },
+
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(NewGame);

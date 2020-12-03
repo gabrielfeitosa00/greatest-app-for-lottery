@@ -1,4 +1,4 @@
-import {GAME_FETCH,GAME_SET_TYPE,GAME_SELECT_TYPE,GAME_ADD} from './actionTypes';
+import {GAME_FETCH,GAME_SET_TYPE,GAME_ADD} from './actionTypes';
 
 
 
@@ -16,10 +16,4 @@ export const SetGameType = (gameTypes)=>{
 }
 export const AddGame = (newGames)=>{
     return{type:GAME_ADD,newGames}
-}
-export const SelectGameType = (gameType)=>{
-    return {
-        type: GAME_SELECT_TYPE,
-        gameType
-    }
 }
