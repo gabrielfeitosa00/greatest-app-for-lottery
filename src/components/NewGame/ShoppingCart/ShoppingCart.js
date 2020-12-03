@@ -5,7 +5,7 @@ import GameCards from "../../Games/GameCards";
 import { VscArrowRight } from "react-icons/vsc";
 //mudar a altura dps quando colocar os elementos do carrinho
 const Cart = styled.div`
-  grid-column: 3/4;
+  grid-column: 2/4;
 
   display: flex;
   flex-flow: column;
@@ -56,16 +56,25 @@ const ShoppingCart = ({newBet}) => {
     setCurrentCart(prevCart);
   }
 
+  const updateTotalPrice = useCallback (()=>{
+    const newPrice = currentCart.reduce((prev,curr)=>prev + curr.price,0)
+    console.log( 'My new price', newPrice)
+    setTotalPrice(newPrice)
+  },[currentCart])
+
   const buyItemsHandler = () =>{
 
   }
-
+  const formatedTotalPrice = new Intl.NumberFormat("pt", {
+    style: "currency",
+    currency: "BRL",
+  }).format(totalPrice);
   useEffect(()=>{
     if(newBet)
     addItemHandler(newBet)
     
   },[newBet,addItemHandler])
-  useEffect(()=>{console.log('My current Cart ' , currentCart)},[currentCart])
+  useEffect(()=>{updateTotalPrice()},[currentCart,updateTotalPrice])
   return (
     <Cart>
       <CartContent>
@@ -76,7 +85,7 @@ const ShoppingCart = ({newBet}) => {
         <GameCards onDelete = {deleteItemHandler} cardObjs={currentCart} />
         <p>
           {" "}
-          <strong>CART</strong> TOTAL: (PROPS TOTAL PRICE HERE)
+          <strong>CART</strong> TOTAL: {formatedTotalPrice}
         </p>
       </CartContent>
 

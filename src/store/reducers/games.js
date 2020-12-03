@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   types: null,
   currentType:null,
+  prevGames: [],
 };
 
 const reducer = (state = initialState, action) => {

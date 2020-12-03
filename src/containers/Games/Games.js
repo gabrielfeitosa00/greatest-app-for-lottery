@@ -26,7 +26,7 @@ const Games = (props) => {
         <p>Filters</p>
         <GameTypes types={types} clickHandler={handleFilter} activeArray={filters}/>
       </div>
-      <GameCards/>
+      <GameCards cardObjs={props.prevGames}/>
       </div>
 
       <StyledButton colored size="24px">
@@ -40,7 +40,7 @@ const Games = (props) => {
 const mapStateToProps = (state) => {
   return {
     types: state.games.types,
-    // map prev games to props 
+    prevGames : state.games.prevGames
   };
 };
 const mapDispatchToProps = (dispatch) => {
