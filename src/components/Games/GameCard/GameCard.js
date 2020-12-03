@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {BsTrash} from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
 const StyledCard = styled.section`
   margin-bottom:12px;
   width: 100%;
@@ -21,7 +21,7 @@ const VerticalBar = styled.div`
 `;
 const Content = styled.div`
   border: solid 1px red;
-  width:inherit;
+  width: inherit;
   padding: 0 10px;
   display: flex;
   flex-flow: column;
@@ -53,7 +53,7 @@ const Provider = styled.div`
     margin: 0 6px;
     color: #707070;
     font-size: 14px;
-    font-weight:normal;
+    font-weight: normal;
     font-style: italic;
   }
 `;
@@ -62,7 +62,7 @@ const DateText = styled.div`
   font-size: 14px;
   font-style: italic;
 `;
-const GameCard = ({ color, numbers, name, date, price }) => {
+const GameCard = ({ color, numbers, name, date, price,onDelete }) => {
   const formatedPrice = new Intl.NumberFormat("pt", {
     style: "currency",
     currency: "BRL",
@@ -88,7 +88,20 @@ const GameCard = ({ color, numbers, name, date, price }) => {
   }
   return (
     <StyledCard>
-    {date? null :<BsTrash style= { {verticalAlign: 'middle', alignSelf:'center',width:'12%',height:'30%'} }/>}
+      {date ? null : (
+        <BsTrash
+          style={{
+            verticalAlign: "middle",
+            alignSelf: "center",
+            width: "12%",
+            height: "30%",
+            cursor: 'pointer'
+          }
+          
+          }
+          onClick={onDelete}
+        />
+      )}
       <VerticalBar color={color} />
       <Content>
         <Numbers>{numbers}</Numbers>

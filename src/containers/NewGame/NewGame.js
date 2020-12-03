@@ -53,6 +53,7 @@ const NewGame = ({ OnInitGames, types }) => {
 
   const saveBetHandler = () => {
     const newBetObj = {
+      id: new Date().getTime(),
       numbers: currentBet.join(','),
       color: currentType.color,
       name: currentType.type,
