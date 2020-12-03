@@ -1,5 +1,5 @@
 import { put } from "redux-saga/effects";
-import { SetGameType, SelectGameType } from "../actions/index";
+import { SetGameType} from "../actions/index";
 import axios from "axios";
 
 export function* InitGames(action) {
@@ -8,7 +8,6 @@ export function* InitGames(action) {
     const types = yield data.types;
     yield console.log(types);
     yield put(SetGameType(types));
-    // yield put(SelectGameType(types[0].type));
   } catch (error) {
     yield console.log(error);
   }

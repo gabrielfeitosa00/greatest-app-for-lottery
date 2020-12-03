@@ -48,9 +48,8 @@ const ShoppingCart = ({newBet}) => {
   const [currentCart,setCurrentCart] = useState([])
 
   const addItemHandler = useCallback ((newItem)=>{
-    const newCart = [...currentCart,newItem]
-    setCurrentCart(newCart)
-  },[currentCart])
+    setCurrentCart(prevCurrentCart=>[...prevCurrentCart,newItem])
+  },[])
   const deleteItemHandler = (itemId)=>{
     let prevCart = [...currentCart]
     prevCart = prevCart.filter(cartItem => cartItem.id !== itemId)
@@ -62,8 +61,11 @@ const ShoppingCart = ({newBet}) => {
   }
 
   useEffect(()=>{
+    if(newBet)
     addItemHandler(newBet)
+    
   },[newBet,addItemHandler])
+  useEffect(()=>{console.log('My current Cart ' , currentCart)},[currentCart])
   return (
     <Cart>
       <CartContent>
@@ -71,7 +73,7 @@ const ShoppingCart = ({newBet}) => {
           {" "}
           <strong>CART</strong>{" "}
         </p>
-        <GameCards onDelete = {deleteItemHandler} gameObjs={currentCart} />
+        <GameCards onDelete = {deleteItemHandler} cardObjs={currentCart} />
         <p>
           {" "}
           <strong>CART</strong> TOTAL: (PROPS TOTAL PRICE HERE)
