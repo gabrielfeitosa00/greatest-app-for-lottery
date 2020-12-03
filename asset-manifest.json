@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/greatest-app-for-lottery-react/static/css/main.af76e162.chunk.css",
-    "main.js": "/greatest-app-for-lottery-react/static/js/main.4389db0d.chunk.js",
-    "main.js.map": "/greatest-app-for-lottery-react/static/js/main.4389db0d.chunk.js.map",
-    "runtime-main.js": "/greatest-app-for-lottery-react/static/js/runtime-main.f9ab98cc.js",
-    "runtime-main.js.map": "/greatest-app-for-lottery-react/static/js/runtime-main.f9ab98cc.js.map",
-    "static/js/2.1fa0cca0.chunk.js": "/greatest-app-for-lottery-react/static/js/2.1fa0cca0.chunk.js",
-    "static/js/2.1fa0cca0.chunk.js.map": "/greatest-app-for-lottery-react/static/js/2.1fa0cca0.chunk.js.map",
-    "static/js/3.20b55020.chunk.js": "/greatest-app-for-lottery-react/static/js/3.20b55020.chunk.js",
-    "static/js/3.20b55020.chunk.js.map": "/greatest-app-for-lottery-react/static/js/3.20b55020.chunk.js.map",
-    "index.html": "/greatest-app-for-lottery-react/index.html",
-    "static/css/main.af76e162.chunk.css.map": "/greatest-app-for-lottery-react/static/css/main.af76e162.chunk.css.map",
-    "static/js/2.1fa0cca0.chunk.js.LICENSE.txt": "/greatest-app-for-lottery-react/static/js/2.1fa0cca0.chunk.js.LICENSE.txt"
+    "main.css": "/greatest-app-for-lottery/static/css/main.af76e162.chunk.css",
+    "main.js": "/greatest-app-for-lottery/static/js/main.d026be0a.chunk.js",
+    "main.js.map": "/greatest-app-for-lottery/static/js/main.d026be0a.chunk.js.map",
+    "runtime-main.js": "/greatest-app-for-lottery/static/js/runtime-main.e5d92654.js",
+    "runtime-main.js.map": "/greatest-app-for-lottery/static/js/runtime-main.e5d92654.js.map",
+    "static/js/2.74029438.chunk.js": "/greatest-app-for-lottery/static/js/2.74029438.chunk.js",
+    "static/js/2.74029438.chunk.js.map": "/greatest-app-for-lottery/static/js/2.74029438.chunk.js.map",
+    "static/js/3.20b55020.chunk.js": "/greatest-app-for-lottery/static/js/3.20b55020.chunk.js",
+    "static/js/3.20b55020.chunk.js.map": "/greatest-app-for-lottery/static/js/3.20b55020.chunk.js.map",
+    "index.html": "/greatest-app-for-lottery/index.html",
+    "static/css/main.af76e162.chunk.css.map": "/greatest-app-for-lottery/static/css/main.af76e162.chunk.css.map",
+    "static/js/2.74029438.chunk.js.LICENSE.txt": "/greatest-app-for-lottery/static/js/2.74029438.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.f9ab98cc.js",
-    "static/js/2.1fa0cca0.chunk.js",
+    "static/js/runtime-main.e5d92654.js",
+    "static/js/2.74029438.chunk.js",
     "static/css/main.af76e162.chunk.css",
-    "static/js/main.4389db0d.chunk.js"
+    "static/js/main.d026be0a.chunk.js"
   ]
 }
