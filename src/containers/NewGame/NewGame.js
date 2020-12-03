@@ -22,7 +22,6 @@ const NewGame = ({ OnInitGames, types }) => {
     let newBet = [...currentBet]
     if(currentBet.indexOf(num)!==-1 || currentBet.length >= currentType["max-number"]){
       newBet = newBet.filter(betItem => betItem !== num)
-      console.log('filtered : ' + newBet)
     } else {
       newBet = newBet.concat(num);
     }
@@ -34,7 +33,8 @@ const NewGame = ({ OnInitGames, types }) => {
   
   }
   const clearBetHandler = ()=>{
-    setCurrentBet([])
+    const clearArr =[]
+    setCurrentBet(clearArr)
   }
 
   const autocompleteBetHandler = () =>{
@@ -44,14 +44,12 @@ const NewGame = ({ OnInitGames, types }) => {
     setCurrentBet(currentBet.concat(generatedNumbers));
   }
 
-  const purchaseBetHandler = ()=>{
+  const saveBetHandler = ()=>{
 
+    clearBetHandler()
   }
 
-  const deleteBetHandler = (betId)=>{
-    const prevCart = [...shoppingList]
-    prevCart = prevCart.filter(cartItem => cartItem.id !== betId)
-  }
+
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
@@ -93,9 +91,10 @@ const NewGame = ({ OnInitGames, types }) => {
           color={currentType ? currentType.color : null}
           total={currentType ? currentType.range : null}
         />
-        <CartButtons shouldBeDisabled={currentBet.length === 0 } onClear = {clearBetHandler} onComplete={autocompleteBetHandler}/>
+        <CartButtons shouldBeDisabled={currentBet.length === 0 } shouldPurchase = {currentType ? currentBet.length < currentType["max-number"]: true} onClear = {clearBetHandler} onComplete={autocompleteBetHandler}/>
       </div>
-      <ShoppingCart />
+      <ShoppingCart/> 
+      {/* newBet={}  */}
     </div>
   );
 };

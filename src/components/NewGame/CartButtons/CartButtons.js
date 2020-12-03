@@ -7,7 +7,7 @@ const CartButtons = (props)=>{
     return (<div className={classes.CartButtons}>
         <CartButton onClick={props.onComplete}>Complete Game</CartButton>
         <CartButton disabled={props.shouldBeDisabled} onClick={props.onClear}>Clear Game</CartButton>
-        <CartButton disabled={props.shouldBeDisabled} filled> Add to Cart <HiOutlineShoppingCart/> </CartButton>
+        <CartButton disabled={props.shouldBeDisabled||props.shouldPurchase} filled> Add to Cart <HiOutlineShoppingCart/> </CartButton>
     </div>)
 }
 

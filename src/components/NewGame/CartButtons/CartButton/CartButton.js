@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-padding:8px;
+padding:10px;
+height:7vh;
 border: 1px solid #27C383;
 width:fit-content;
 color: ${props=>props.filled? '#FFFFFF': '#27C383'};
