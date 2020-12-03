@@ -30,7 +30,7 @@ sagaMiddleware.run(watchAuth);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename='/greatest-app-for-lottery'>
         <App />
       </BrowserRouter>
     </Provider>

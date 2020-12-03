@@ -21,7 +21,7 @@
     "web-vitals": "^0.2.4",
     "yup": "^0.31.0"
   },
-  "homepage": "https://gabrielfeitosa00.github.io/greatest-app-for-lottery-react",
+  "homepage": "https://gabrielfeitosa00.github.io/greatest-app-for-lottery",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
