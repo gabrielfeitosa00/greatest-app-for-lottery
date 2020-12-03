@@ -1,7 +1,6 @@
 
 
 export const GAME_ADD = 'GAME_ADD';
-export const GAME_REMOVE = 'GAME_REMOVE';
 export const GAME_FETCH = 'GAME_FETCH';
 export const GAME_SET_TYPE = 'GAME_SET_TYPE';
 export const GAME_SELECT_TYPE = 'GAME_SELECT_TYPE';

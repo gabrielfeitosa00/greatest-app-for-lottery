@@ -12,6 +12,7 @@ const Games = (props) => {
   const [filters,SetFilters] = useState([])
   useEffect(() => {
     OnInitGames();
+    console.log("my prev Games ",props.prevGames)
   }, [OnInitGames]);
   const handleFilter = (fil)=>{
       const newFilters = [...filters,fil]

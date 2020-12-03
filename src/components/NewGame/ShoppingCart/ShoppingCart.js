@@ -2,7 +2,10 @@ import React,{useState,useEffect,useCallback} from "react";
 import styled from "styled-components";
 import StyledButton from "../../UI/StyledComponents/StyledButton";
 import GameCards from "../../Games/GameCards";
+import {connect} from "react-redux";
 import { VscArrowRight } from "react-icons/vsc";
+import {AddGame} from "../../../store/actions/index"
+import {withRouter} from 'react-router-dom';
 //mudar a altura dps quando colocar os elementos do carrinho
 const Cart = styled.div`
   grid-column: 2/4;
@@ -43,7 +46,7 @@ const CartContent = styled.div`
   }
 `;
 
-const ShoppingCart = ({newBet}) => {
+const ShoppingCart = ({newBet,onPurchase,history}) => {
   const [totalPrice,setTotalPrice] = useState(0)
   const [currentCart,setCurrentCart] = useState([])
 
@@ -63,6 +66,13 @@ const ShoppingCart = ({newBet}) => {
   },[currentCart])
 
   const buyItemsHandler = () =>{
+    const purchaseDate = new Date()
+    const formatedDate = `${purchaseDate.getDay()}/${purchaseDate.getMonth()}/${purchaseDate.getFullYear()} `
+    const finishedPurchase = currentCart.map(cartItem=>{ return {...cartItem,date:formatedDate}});
+    onPurchase(finishedPurchase);
+    setCurrentCart([])
+    history.push("/");
+    
 
   }
   const formatedTotalPrice = new Intl.NumberFormat("pt", {
@@ -89,7 +99,7 @@ const ShoppingCart = ({newBet}) => {
         </p>
       </CartContent>
 
-      <CartSave>
+      <CartSave onClick={buyItemsHandler}>
         <StyledButton size="35px" colored>
           Save <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
         </StyledButton>
@@ -97,5 +107,9 @@ const ShoppingCart = ({newBet}) => {
     </Cart>
   );
 };
-
-export default ShoppingCart;
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    onPurchase:(cartPurchase)=>{dispatch(AddGame(cartPurchase))}
+  }
+}
+export default  withRouter(connect (null,mapDispatchToProps)(ShoppingCart));

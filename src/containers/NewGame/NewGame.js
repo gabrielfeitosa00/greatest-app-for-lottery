@@ -58,6 +58,7 @@ const NewGame = ({ OnInitGames, types }) => {
       color: currentType.color,
       name: currentType.type,
       price: currentType.price,
+      date:null,
     };
     console.log(newBetObj)
     setBetObject(newBetObj);
