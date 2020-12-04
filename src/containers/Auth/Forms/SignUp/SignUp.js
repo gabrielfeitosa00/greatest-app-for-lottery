@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useFormik } from "formik";
 import classes from "./SignUp.module.css";
@@ -7,11 +7,13 @@ import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signUpSchema } from "../../../../validation/FormSchemas";
-import {Redirect} from "react-router-dom";
 import { SignUpAsync } from "../../../../store/actions/index";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const SignUp = (props) => {
+  const dispatch = useDispatch();
+  const OnSignUp = (name, email, password) => dispatch(SignUpAsync(name, email, password))
+  
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -20,7 +22,7 @@ const SignUp = (props) => {
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      props.OnSignUp(values.name, values.email, values.password);
+      OnSignUp(values.name, values.email, values.password);
       props.history.push("/");
     },
   });
@@ -62,7 +64,7 @@ const SignUp = (props) => {
         {formik.errors.password ? (
           <p className={classes.Errors}>{formik.errors.password}</p>
         ) : null}
-        <FormButton colored='#b5c401' type="submit" size="35px">
+        <FormButton colored="#b5c401" type="submit" size="35px">
           {" "}
           Register <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
@@ -76,10 +78,5 @@ const SignUp = (props) => {
     </div>
   );
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    OnSignUp: (name, email, password) =>
-      dispatch(SignUpAsync(name, email, password)),
-  };
-};
-export default connect(null,mapDispatchToProps)(SignUp);
+
+export default SignUp;

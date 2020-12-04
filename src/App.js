@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import AuthLayout from "./hoc/Layout/AuthLayout/AuthLayout";
 import SignIn from "./containers/Auth/Forms/SignIn/SignIn";
 import SignUp from "./containers/Auth/Forms/SignUp/SignUp";
@@ -12,12 +12,14 @@ import Footer from "./components/UI/Footer/Footer";
 import Logout from "./containers/Auth/Logout/Logout";
 import { CheckAuthState } from "./store/actions/index";
 
-import { connect } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 import { Redirect, Route, Switch } from "react-router-dom";
 
 function App(props) {
-  const { onTryAutoSignIn } = props;
+  const isAuth = useSelector(state=>state.auth.isAuth)
+  const dispatch = useDispatch();
+  const onTryAutoSignIn = useCallback(() => {dispatch(CheckAuthState())},[dispatch])
   useEffect(() => {
     onTryAutoSignIn();
   }, [onTryAutoSignIn]);
@@ -31,7 +33,7 @@ function App(props) {
     </AuthLayout>
   );
 
-  if (props.isAuth) {
+  if (isAuth) {
     appContent = (
       <GameLayout>
         <Switch>
@@ -52,17 +54,7 @@ function App(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTryAutoSignIn: () => {
-      dispatch(CheckAuthState());
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+export default App;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FetchGameType } from "../../store/actions/index";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./Games.module.css";
 import { VscArrowRight } from "react-icons/vsc";
 import StyledButton from "../../components/UI/StyledComponents/StyledButton";
@@ -8,9 +8,12 @@ import UnStyledLink from "../../components/Navegation/UnStyledLink/UnStyledLink"
 import GameTypes from "../../components/Games/GameTypes";
 import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
-  const { OnInitGames, types } = props;
+  const types =  useSelector(state=>state.games.types)
+  const prevGames = useSelector(state=>state.games.prevGames)
+  const dispatch = useDispatch()
+  const OnInitGames = useCallback (()=>dispatch(FetchGameType()),[dispatch])
   const [filters, SetFilters] = useState([]);
-  const [filteredGame, setFilteredGames] = useState(props.prevGames);
+  const [filteredGame, setFilteredGames] = useState(prevGames);
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
@@ -23,8 +26,8 @@ const Games = (props) => {
       newFilters = [...newFilters, fil];
     }
     newFilters.length === 0
-      ? (filteredContent = props.prevGames)
-      : (filteredContent = props.prevGames.filter((game) =>
+      ? (filteredContent = prevGames)
+      : (filteredContent = prevGames.filter((game) =>
           newFilters.includes(game.name)
         ));
     SetFilters(newFilters);
@@ -53,18 +56,7 @@ const Games = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    types: state.games.types,
-    prevGames: state.games.prevGames,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    OnInitGames: () => {
-      dispatch(FetchGameType());
-    },
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Games);
+
+
+export default Games;

@@ -2,7 +2,7 @@ import React,{useState,useEffect,useCallback} from "react";
 import styled from "styled-components";
 import StyledButton from "../../UI/StyledComponents/StyledButton";
 import GameCards from "../../Games/GameCards";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 import { VscArrowRight } from "react-icons/vsc";
 import {AddGame} from "../../../store/actions/index"
 import {withRouter} from 'react-router-dom';
@@ -46,7 +46,9 @@ const CartContent = styled.div`
   }
 `;
 
-const ShoppingCart = ({newBet,onPurchase,history}) => {
+const ShoppingCart = ({newBet,history}) => {
+  const dispatch = useDispatch()
+  const onPurchase = (cartPurchase)=>dispatch(AddGame(cartPurchase))
   const [totalPrice,setTotalPrice] = useState(0)
   const [currentCart,setCurrentCart] = useState([])
   const minCart = useState(12)[0];
@@ -90,7 +92,7 @@ const ShoppingCart = ({newBet,onPurchase,history}) => {
           {" "}
           <strong>CART</strong>{" "}
         </p>
-        <GameCards onDelete = {deleteItemHandler} cardObjs={currentCart} />
+        <GameCards onDelete = {deleteItemHandler} cardObjs={currentCart} purchasing />
         <p>
           {" "}
           <strong>CART</strong> TOTAL: {formatedTotalPrice}
@@ -105,9 +107,5 @@ const ShoppingCart = ({newBet,onPurchase,history}) => {
     </Cart>
   );
 };
-const mapDispatchToProps = (dispatch)=>{
-  return{
-    onPurchase:(cartPurchase)=>{dispatch(AddGame(cartPurchase))}
-  }
-}
-export default  withRouter(connect (null,mapDispatchToProps)(ShoppingCart));
+
+export default  withRouter(ShoppingCart);

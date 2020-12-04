@@ -1,16 +1,22 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { connect } from "react-redux";
+
 import { FetchGameType} from "../../store/actions/index";
+import {useDispatch,useSelector} from "react-redux";
 import classes from "./NewGame.module.css";
 import ShoppingCart from "../../components/NewGame/ShoppingCart/ShoppingCart";
 import GameTypes from "../../components/Games/GameTypes";
 import CartButtons from "../../components/NewGame/CartButtons/CartButtons";
 import NumberGrid from "../../components/NewGame/NumberGrid/NumberGrid";
 import { genereteNumber } from "../../utils/utility";
-const NewGame = ({ OnInitGames, types }) => {
+const NewGame = (props) => {
   const [currentType, setCurrentType] = useState(null);
   const [currentBet, setCurrentBet] = useState([]);
   const [betObject, setBetObject] = useState(null);
+
+  const  types = useSelector(state=>state.games.types)
+  const dispatch = useDispatch();
+  const OnInitGames = useCallback (() => dispatch(FetchGameType()),[dispatch])
+
   const selectGameType = useCallback(
     (currType) => {
       const selectedType = types.filter(
@@ -75,10 +81,7 @@ const NewGame = ({ OnInitGames, types }) => {
     if (types) selectGameType(types[0].type);
   }, [types, selectGameType]);
 
-  useEffect(() => {
-    console.log("teste:" + currentBet);
-    console.log("teste betObj:" , betObject);
-  }, [currentBet,betObject]);
+
   return (
     <div className={classes.NewGame}>
       <div className={classes.Content}>
@@ -126,17 +129,5 @@ const NewGame = ({ OnInitGames, types }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    types: state.games.types,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    OnInitGames: () => {
-      dispatch(FetchGameType());
-    },
 
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(NewGame);
+export default NewGame;

@@ -6,11 +6,14 @@ import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signInSchema } from "../../../../validation/FormSchemas";
-import { connect } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { SignInAsync } from "../../../../store/actions/auth";
 import { Redirect } from "react-router-dom";
 
 const SignIn = (props) => {
+  const isAuth = useSelector(state=>state.auth.isAuth)
+  const dispatch = useDispatch()
+  const onSignin = (email, password) => dispatch(SignInAsync(email, password))
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -18,13 +21,13 @@ const SignIn = (props) => {
     },
     validationSchema: signInSchema,
     onSubmit: (values) => {
-      props.onSignin(values.email, values.password);
+      onSignin(values.email, values.password);
     },
   });
 
   return (
     <div className={classes.FormContainer}>
-      {props.isAuth && <Redirect to="/home" />}
+      {isAuth && <Redirect to="/home" />}
       Authentication
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
         <FormInput
@@ -65,14 +68,6 @@ const SignIn = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSignin: (email, password) => dispatch(SignInAsync(email, password)),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+
+
+export default SignIn;

@@ -63,7 +63,7 @@ const DateText = styled.div`
   font-style: italic;
   margin: 17px 0;
 `;
-const GameCard = ({ color, numbers, name, date, price,onDelete }) => {
+const GameCard = ({ color, numbers, name, date, price,onDelete,purchasing }) => {
   const formatedPrice = new Intl.NumberFormat("pt", {
     style: "currency",
     currency: "BRL",
@@ -81,7 +81,7 @@ const GameCard = ({ color, numbers, name, date, price,onDelete }) => {
   
   return (
     <StyledCard>
-      {date ? null : (
+      { purchasing ? (
         <BsTrash
           style={{
             verticalAlign: "middle",
@@ -94,7 +94,7 @@ const GameCard = ({ color, numbers, name, date, price,onDelete }) => {
           }
           onClick={onDelete}
         />
-      )}
+      ): null}
       <VerticalBar color={color} />
       <Content>
         <Numbers>{numbers}</Numbers>

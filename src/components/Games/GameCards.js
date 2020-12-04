@@ -14,6 +14,7 @@ const GameCards = (props) => {
         date={cardObj.date}
         price={cardObj.price}
         onDelete={()=>props.onDelete(cardObj.id)}
+        purchasing={props.purchasing}
       />
     );
     console.log(props.cardObjs)
