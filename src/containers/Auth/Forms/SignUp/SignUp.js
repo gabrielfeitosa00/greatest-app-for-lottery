@@ -7,12 +7,12 @@ import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signUpSchema } from "../../../../validation/FormSchemas";
-import { SignUpAsync } from "../../../../store/actions/index";
+import { Creators as AuthCreators } from "../../../../store/reducers/auth";
 import { useDispatch } from "react-redux";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
-  const OnSignUp = (name, email, password) => dispatch(SignUpAsync(name, email, password))
+  const OnSignUp = (name, email, password) => dispatch(AuthCreators.SignUpAsync(name, email, password))
   
   const formik = useFormik({
     initialValues: {

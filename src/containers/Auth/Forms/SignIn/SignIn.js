@@ -7,13 +7,13 @@ import { VscArrowRight } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signInSchema } from "../../../../validation/FormSchemas";
 import { useSelector,useDispatch } from "react-redux";
-import { SignInAsync } from "../../../../store/actions/auth";
+import { Creators as AuthCreators } from "../../../../store/reducers/auth";
 import { Redirect } from "react-router-dom";
 
 const SignIn = (props) => {
   const isAuth = useSelector(state=>state.auth.isAuth)
   const dispatch = useDispatch()
-  const onSignin = (email, password) => dispatch(SignInAsync(email, password))
+  const onSignin = (email, password) => dispatch(AuthCreators.SignInAsync(email, password))
   const formik = useFormik({
     initialValues: {
       email: "",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { FetchGameType} from "../../store/actions/index";
+import { Creators as GameCreators } from "../../store/reducers/games";
 import {useDispatch,useSelector} from "react-redux";
 import classes from "./NewGame.module.css";
 import ShoppingCart from "../../components/NewGame/ShoppingCart/ShoppingCart";
@@ -15,7 +15,7 @@ const NewGame = (props) => {
 
   const  types = useSelector(state=>state.games.types)
   const dispatch = useDispatch();
-  const OnInitGames = useCallback (() => dispatch(FetchGameType()),[dispatch])
+  const OnInitGames = useCallback (() => dispatch(GameCreators.FetchGameType()),[dispatch])
 
   const selectGameType = useCallback(
     (currType) => {

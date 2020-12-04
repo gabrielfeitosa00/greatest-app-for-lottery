@@ -4,7 +4,7 @@ import StyledButton from "../../UI/StyledComponents/StyledButton";
 import GameCards from "../../Games/GameCards";
 import {useDispatch} from "react-redux";
 import { VscArrowRight } from "react-icons/vsc";
-import {AddGame} from "../../../store/actions/index"
+import {Creators as GameCreators} from "../../../store/reducers/games";
 import {withRouter} from 'react-router-dom';
 //mudar a altura dps quando colocar os elementos do carrinho
 const Cart = styled.div`
@@ -48,7 +48,7 @@ const CartContent = styled.div`
 
 const ShoppingCart = ({newBet,history}) => {
   const dispatch = useDispatch()
-  const onPurchase = (cartPurchase)=>dispatch(AddGame(cartPurchase))
+  const onPurchase = (cartPurchase)=>dispatch(GameCreators.AddGame(cartPurchase))
   const [totalPrice,setTotalPrice] = useState(0)
   const [currentCart,setCurrentCart] = useState([])
   const minCart = useState(12)[0];

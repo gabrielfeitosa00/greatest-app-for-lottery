@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { FetchGameType } from "../../store/actions/index";
+import { Creators as GameCreators } from "../../store/reducers/games";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Games.module.css";
 import { VscArrowRight } from "react-icons/vsc";
@@ -11,7 +11,7 @@ const Games = (props) => {
   const types =  useSelector(state=>state.games.types)
   const prevGames = useSelector(state=>state.games.prevGames)
   const dispatch = useDispatch()
-  const OnInitGames = useCallback (()=>dispatch(FetchGameType()),[dispatch])
+  const OnInitGames = useCallback (()=>dispatch(GameCreators.FetchGameType()),[dispatch])
   const [filters, SetFilters] = useState([]);
   const [filteredGame, setFilteredGames] = useState(prevGames);
   useEffect(() => {

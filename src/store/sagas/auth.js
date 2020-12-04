@@ -1,11 +1,11 @@
 import { put } from "redux-saga/effects";
-import { SignUpStart, SignInSuccess,LogoutSuccess } from "../actions/index";
+import { Creators as AuthCreators } from "../reducers/auth";
 
 export function* SignUp(action) {
   yield localStorage.setItem("name", action.name);
   yield localStorage.setItem("email", action.email);
   yield localStorage.setItem("password", action.password);
-  yield put(SignUpStart(action.name, action.email, action.password));
+  yield put(AuthCreators.SignUpStart(action.name, action.email, action.password));
 }
 
 export function* SignIn(action) {
@@ -21,7 +21,7 @@ export function* SignIn(action) {
   ) {
     yield console.log("fazer tratamento de erro direito dps");
   } else {
-    yield put(SignInSuccess(action.email,action.password));
+    yield put(AuthCreators.SignInSuccess(action.email,action.password));
   }
 }
 
@@ -29,15 +29,15 @@ export function* Logout(){
   yield localStorage.removeItem("name");
   yield localStorage.removeItem("email");
   yield localStorage.removeItem("password");
-  yield put(LogoutSuccess());
+  yield put(AuthCreators.LogoutSuccess());
 }
 
 export function* CheckAuth(){
   const currentEmail = yield localStorage.getItem("email")
   if(!currentEmail){
-    yield put(LogoutSuccess());
+    yield put(AuthCreators.LogoutSuccess());
   } else {
     const currentPassword = yield localStorage.getItem("password")
-    yield put(SignInSuccess(currentEmail,currentPassword))
+    yield put(AuthCreators.SignInSuccess(currentEmail,currentPassword))
   }
 }

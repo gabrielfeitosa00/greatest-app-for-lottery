@@ -10,7 +10,7 @@ import Games from "./containers/Games/Games";
 import NewGame from "./containers/NewGame/NewGame";
 import Footer from "./components/UI/Footer/Footer";
 import Logout from "./containers/Auth/Logout/Logout";
-import { CheckAuthState } from "./store/actions/index";
+import { Creators as AuthCreators } from "./store/reducers/auth";
 
 import { useSelector,useDispatch } from "react-redux";
 
@@ -19,7 +19,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 function App(props) {
   const isAuth = useSelector(state=>state.auth.isAuth)
   const dispatch = useDispatch();
-  const onTryAutoSignIn = useCallback(() => {dispatch(CheckAuthState())},[dispatch])
+  const onTryAutoSignIn = useCallback(() => {dispatch(AuthCreators.CheckAuthState())},[dispatch])
   useEffect(() => {
     onTryAutoSignIn();
   }, [onTryAutoSignIn]);
