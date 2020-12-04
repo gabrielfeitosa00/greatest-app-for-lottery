@@ -52,13 +52,15 @@ const NewGame = ({ OnInitGames, types }) => {
   };
 
   const saveBetHandler = () => {
+    const purchaseDate = new Date()
+    const formatedDate = `${purchaseDate.getDay()}/${purchaseDate.getMonth()}/${purchaseDate.getFullYear()} `
     const newBetObj = {
       id: new Date().getTime(),
       numbers: currentBet.join(','),
       color: currentType.color,
       name: currentType.type,
       price: currentType.price,
-      date:null,
+      date:formatedDate,
     };
     console.log(newBetObj)
     setBetObject(newBetObj);

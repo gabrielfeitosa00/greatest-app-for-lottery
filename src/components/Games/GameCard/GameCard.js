@@ -8,6 +8,7 @@ const StyledCard = styled.section`
   display: flex;
   flex-flow: row;
   height: 96px;
+  
 
 }
 `;
@@ -26,7 +27,7 @@ const Content = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   box-sizing: border-box;
 `;
 const Numbers = styled.div`
@@ -60,31 +61,24 @@ const Provider = styled.div`
 const DateText = styled.div`
   font-size: 14px;
   font-style: italic;
+  margin: 17px 0;
 `;
 const GameCard = ({ color, numbers, name, date, price,onDelete }) => {
   const formatedPrice = new Intl.NumberFormat("pt", {
     style: "currency",
     currency: "BRL",
   }).format(price);
-  let dateComponent = null;
-  if (date) {
-    dateComponent = (
-      <DateText>
-        {" "}
-        {date} - ({formatedPrice})
-      </DateText>
-    );
-  }
+  
 
-  let providerComponent = (
-    <Provider color={color}>
-      {" "}
-      {name} <p>{formatedPrice}</p>
-    </Provider>
-  );
-  if (date) {
-    providerComponent = <Provider color={color}>{name}</Provider>;
-  }
+    
+
+  
+
+
+  
+  
+    
+  
   return (
     <StyledCard>
       {date ? null : (
@@ -104,8 +98,8 @@ const GameCard = ({ color, numbers, name, date, price,onDelete }) => {
       <VerticalBar color={color} />
       <Content>
         <Numbers>{numbers}</Numbers>
-        {dateComponent}
-        {providerComponent}
+        <DateText>{date} - ({formatedPrice}) </DateText>
+        <Provider color={color}>{name}</Provider>
       </Content>
     </StyledCard>
   );

@@ -67,10 +67,7 @@ const ShoppingCart = ({newBet,onPurchase,history}) => {
   },[currentCart])
 
   const buyItemsHandler = () =>{
-    const purchaseDate = new Date()
-    const formatedDate = `${purchaseDate.getDay()}/${purchaseDate.getMonth()}/${purchaseDate.getFullYear()} `
-    const finishedPurchase = currentCart.map(cartItem=>{ return {...cartItem,date:formatedDate}});
-    onPurchase(finishedPurchase);
+    onPurchase(currentCart);
     setCurrentCart([])
     history.push("/");
     
