@@ -4,10 +4,10 @@ import axios from "axios";
 
 export function* InitGames(action) {
   try {
-    const { data } = yield axios.get("./gameTypes.json");
-    const types = yield data.types;
-    yield put(GameCreators.SetGameType(types));
+     const token = yield localStorage.getItem("token")
+    const response  = yield axios.get("http://127.0.0.1:3333/gametypes",{headers: { Authorization: `Bearer ${token}` }});
+    yield put(GameCreators.SetGameType(response.data));
   } catch (error) {
-    yield console.log(error);
+    yield console.log(error.response.error);
   }
 }

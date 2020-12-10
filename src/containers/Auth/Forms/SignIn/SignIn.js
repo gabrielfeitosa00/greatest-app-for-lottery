@@ -11,7 +11,7 @@ import { Creators as AuthCreators } from "../../../../store/reducers/auth";
 import { Redirect } from "react-router-dom";
 
 const SignIn = (props) => {
-  const isAuth = useSelector(state=>state.auth.isAuth)
+  const isAuth = useSelector(state=>state.auth.token !== null)
   const dispatch = useDispatch()
   const onSignin = (email, password) => dispatch(AuthCreators.SignInAsync(email, password))
   const formik = useFormik({

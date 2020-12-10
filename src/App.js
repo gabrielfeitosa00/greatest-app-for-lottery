@@ -17,7 +17,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 function App(props) {
-  const isAuth = useSelector(state=>state.auth.isAuth)
+  const isAuth = useSelector(state=>state.auth.token !== null)
   const dispatch = useDispatch();
   const onTryAutoSignIn = useCallback(() => {dispatch(AuthCreators.CheckAuthState())},[dispatch])
   useEffect(() => {

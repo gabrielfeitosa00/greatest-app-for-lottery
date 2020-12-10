@@ -12,17 +12,18 @@ import { useDispatch } from "react-redux";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
-  const OnSignUp = (name, email, password) => dispatch(AuthCreators.SignUpAsync(name, email, password))
+  const OnSignUp = (username, email, password,password_confirmation) => dispatch(AuthCreators.SignUpAsync(username, email, password,password_confirmation))
   
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
+      password_confirmation:""
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      OnSignUp(values.name, values.email, values.password);
+      OnSignUp(values.name, values.email, values.password,values.password_confirmation);
       props.history.push("/");
     },
   });
@@ -64,6 +65,18 @@ const SignUp = (props) => {
         {formik.errors.password ? (
           <p className={classes.Errors}>{formik.errors.password}</p>
         ) : null}
+        <FormInput
+          name="password_confirmation"
+          type="password"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password_confirmation}
+          placeholder="Password Confirmation"
+        />
+        {formik.errors.password_confirmation ? (
+          <p className={classes.Errors}>{formik.errors.password_confirmation}</p>
+        ) : null}
+
         <FormButton colored="#b5c401" type="submit" size="35px">
           {" "}
           Register <VscArrowRight style={{ verticalAlign: "middle" }} />

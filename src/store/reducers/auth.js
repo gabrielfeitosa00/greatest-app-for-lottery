@@ -10,10 +10,10 @@ export const Types = {
 };
 
 const initialState = {
-  userName: "",
+  username: "",
   password: "",
   email: "",
-  isAuth: false,
+  token: null,
   error: null,
 };
 
@@ -22,19 +22,17 @@ const reducer = (state = initialState, action) => {
     case Types.AUTH_SINGUP_START:
       return {
         ...state,
-        userName: action.name,
+        username: action.name,
         email: action.email,
         password: action.password,
       };
     case Types.AUTH_SINGIN_SUCCESS:
       return {
         ...state,
-        email: action.email,
-        password: action.password,
-        isAuth: true,
+        token: action.token,
       };
     case Types.AUTH_LOGOUT_SUCCESS:
-      return { ...state, userName: "", password: "", email: "", isAuth: false };
+      return { ...state, username: "", password: "", email: "", token: null };
     default:
       return state;
   }
@@ -51,15 +49,14 @@ export const Creators = {
     };
   },
   
-   SignUpAsync : (name, email, password) => {
-    return { type: Types.AUTH_SINGUP, name, email, password };
+   SignUpAsync : (username, email, password,password_confirmation) => {
+    return { type: Types.AUTH_SINGUP, username, email, password,password_confirmation };
   },
   
-   SignInSuccess : (email,password) => {
+   SignInSuccess : (token) => {
     return {
       type: Types.AUTH_SINGIN_SUCCESS,
-      email,
-      password
+      token
     };
   },
   
