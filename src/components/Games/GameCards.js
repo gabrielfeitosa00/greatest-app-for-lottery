@@ -3,9 +3,10 @@ import GameCard from "./GameCard/GameCard";
 import classes from "./GameCards.module.css";
 
 const GameCards = (props) => {
-  let content = <p>You have no games yet!</p>;
-  if (props.cardObjs.length!==0) {
-    content = props.cardObjs.map((cardObj,index) => 
+
+    let content = <p> You have no games yet! </p>
+    if(props.cardObjs.length!==0)
+    {content = props.cardObjs.map((cardObj,index) => 
       <GameCard
         key={index}
         color={cardObj.color}

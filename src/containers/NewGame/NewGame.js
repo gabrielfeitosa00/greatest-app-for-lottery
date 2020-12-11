@@ -7,7 +7,7 @@ import ShoppingCart from "../../components/NewGame/ShoppingCart/ShoppingCart";
 import GameTypes from "../../components/Games/GameTypes";
 import CartButtons from "../../components/NewGame/CartButtons/CartButtons";
 import NumberGrid from "../../components/NewGame/NumberGrid/NumberGrid";
-import { genereteNumber } from "../../utils/utility";
+import { genereteNumber,formatDate } from "../../utils/utility";
 const NewGame = (props) => {
   const [currentType, setCurrentType] = useState(null);
   const [currentBet, setCurrentBet] = useState([]);
@@ -59,10 +59,11 @@ const NewGame = (props) => {
 
   const saveBetHandler = () => {
     const purchaseDate = new Date()
-    const formatedDate = `${purchaseDate.getDay()}/${purchaseDate.getMonth()}/${purchaseDate.getFullYear()} `
+    const formatedDate = formatDate(purchaseDate)
     const newBetObj = {
       id: new Date().getTime(),
       numbers: currentBet.join(','),
+      game_type_id: currentType.id,
       color: currentType.color,
       name: currentType.type,
       price: currentType.price,

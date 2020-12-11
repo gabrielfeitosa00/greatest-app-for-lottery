@@ -16,3 +16,7 @@ export const genereteNumber = (num, compareArr, maxNumber) => {
 
   return array;
 };
+
+export const formatDate = (dateObj) =>{
+  return `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()} `
+}

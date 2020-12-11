@@ -3,7 +3,7 @@ import { takeEvery,all } from "redux-saga/effects";
 import {Types as AuthTypes} from "../reducers/auth";
 import {Types as GameTypes} from '../reducers/games'
 import {SignUp,SignIn,Logout,CheckAuth} from "./auth";
-import {InitGames} from "./games"
+import {InitGames,PostGames,GetGames} from "./games"
 
 export function* watchAuth(){
     yield all([
@@ -15,5 +15,7 @@ export function* watchAuth(){
 
     yield all([
         takeEvery(GameTypes.GAME_FETCH,InitGames),
+        takeEvery(GameTypes.GAME_POST,PostGames),
+        takeEvery(GameTypes.GAMES_GET,GetGames)
     ])
 }

@@ -8,15 +8,22 @@ import UnStyledLink from "../../components/Navegation/UnStyledLink/UnStyledLink"
 import GameTypes from "../../components/Games/GameTypes";
 import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
-  const types =  useSelector(state=>state.games.types)
-  const prevGames = useSelector(state=>state.games.prevGames)
-  const dispatch = useDispatch()
-  const OnInitGames = useCallback (()=>dispatch(GameCreators.FetchGameType()),[dispatch])
+  const types = useSelector((state) => state.games.types);
+
+  const prevGames = useSelector((state) => state.games.prevGames);
+
+  const dispatch = useDispatch();
+
+  const OnInitGames = useCallback(
+    () => dispatch(GameCreators.FetchGameType()),
+    [dispatch]
+  );
+  const GetPrevGames = useCallback(() => dispatch(GameCreators.GetGames()), [
+    dispatch,
+  ]);
   const [filters, SetFilters] = useState([]);
-  const [filteredGame, setFilteredGames] = useState(prevGames);
-  useEffect(() => {
-    OnInitGames();
-  }, [OnInitGames]);
+  const [filteredGame, setFilteredGames] = useState(null);
+
   const handleFilter = (fil) => {
     let newFilters = [...filters];
     let filteredContent = [...filteredGame];
@@ -33,6 +40,24 @@ const Games = (props) => {
     SetFilters(newFilters);
     setFilteredGames(filteredContent);
   };
+
+
+  useEffect(() => {
+    OnInitGames();
+  }, [OnInitGames]);
+  useEffect(() => {
+    GetPrevGames();
+
+  }, [GetPrevGames]);
+  
+  useEffect(()=>{
+    setFilteredGames(prevGames)
+    return ()=>{setFilteredGames(null)}
+  },[prevGames])
+  let games = <p>loading...</p>;
+  if (filteredGame) {
+    games = <GameCards cardObjs={filteredGame} />;
+  }
   return (
     <div className={classes.Games}>
       <div className={classes.GameContent}>
@@ -45,10 +70,10 @@ const Games = (props) => {
             activeArray={filters}
           />
         </div>
-        <GameCards cardObjs={filteredGame} />
+        {games}
       </div>
 
-      <StyledButton colored='#b5c401' size="24px">
+      <StyledButton colored="#b5c401" size="24px">
         <UnStyledLink to="/new-bet">
           New Bet <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
         </UnStyledLink>
@@ -56,7 +81,5 @@ const Games = (props) => {
     </div>
   );
 };
-
-
 
 export default Games;
