@@ -13,7 +13,7 @@ const NavegationItems = (props) => {
           Home
         </NavegationItem>
       ) : null}
-      <NavegationItem destination="/" fontSize="20px">
+      <NavegationItem destination="/profile" fontSize="20px">
         Account
       </NavegationItem>
       <NavegationItem destination="/logout" fontSize="20px">

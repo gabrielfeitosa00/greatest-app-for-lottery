@@ -10,7 +10,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import authReducer from "./store/reducers/auth";
 import gamesReducer from "./store/reducers/games";
 import { BrowserRouter } from "react-router-dom";
-import { watchAuth } from "./store/sagas/index";
+import { watchAuth,watchGame,watchProfile } from "./store/sagas/index";
 import createSagaMiddleware from "redux-saga";
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -27,6 +27,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchGame);
+sagaMiddleware.run(watchProfile);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

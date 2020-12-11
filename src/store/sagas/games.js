@@ -1,5 +1,6 @@
 import { put } from "redux-saga/effects";
 import {Creators as GameCreators} from "../reducers/games"
+import {formatDate} from "../../utils/utility"
 import axios from "axios";
 
 export function* InitGames(action) {
@@ -33,7 +34,10 @@ export function *GetGames(action){
     const token = yield localStorage.getItem("token")
     const response = yield axios.get("http://127.0.0.1:3333/games?limit=5&?page=1",{headers: { Authorization: `Bearer ${token}` }})
     formatedResponse = response.data.data.map(game => {
-      return { numbers : game.numbers, color: game.gametype.color,price:game.gametype.price,name:game.gametype.type}
+
+      let dateObj = new Date(game.created_at)
+
+      return { numbers : game.numbers, color: game.gametype.color,price:game.gametype.price,name:game.gametype.type, date: formatDate(dateObj)}
     })
     console.log(response)
     console.log(formatedResponse)

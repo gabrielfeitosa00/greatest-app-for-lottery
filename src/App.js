@@ -10,6 +10,7 @@ import Games from "./containers/Games/Games";
 import NewGame from "./containers/NewGame/NewGame";
 import Footer from "./components/UI/Footer/Footer";
 import Logout from "./containers/Auth/Logout/Logout";
+import Profile from "./containers/Profile/Profile";
 import { Creators as AuthCreators } from "./store/reducers/auth";
 
 import { useSelector,useDispatch } from "react-redux";
@@ -26,9 +27,11 @@ function App(props) {
   let appContent = (
     <AuthLayout>
       <Switch>
-        <Route exact path="/" component={SignIn} />
+        
         <Route path="/register" component={SignUp} />
         <Route path="/reset" component={ResetPassword} />
+        <Route exact path="/" component={SignIn} />
+        <Redirect to="/" />
       </Switch>
     </AuthLayout>
   );
@@ -39,6 +42,7 @@ function App(props) {
         <Switch>
           <Route path="/logout" component={Logout} />
           <Route path="/new-bet" component={NewGame} />
+          <Route path="/profile" component={Profile}/>
           <Route exact path="/" component={Games} />
 
           <Redirect to="/" />

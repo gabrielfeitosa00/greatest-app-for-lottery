@@ -13,9 +13,19 @@ export function* watchAuth(){
         takeEvery(AuthTypes.AUTH_CHECK_STATE,CheckAuth),
     ])
 
+   
+}
+
+export function* watchGame(){
     yield all([
         takeEvery(GameTypes.GAME_FETCH,InitGames),
         takeEvery(GameTypes.GAME_POST,PostGames),
         takeEvery(GameTypes.GAMES_GET,GetGames)
+    ])
+}
+
+export function* watchProfile(){
+    yield all([
+
     ])
 }
