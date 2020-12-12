@@ -54,6 +54,7 @@ export function* SignIn(action) {
 
 export function* Logout(){
   yield localStorage.removeItem("token");
+  yield localStorage.removeItem("localId");
   yield put(AuthCreators.LogoutSuccess());
 }
 

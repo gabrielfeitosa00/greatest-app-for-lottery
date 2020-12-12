@@ -19,3 +19,10 @@ export const signUpSchema = Yup.object().shape({
 export const resetSchema = Yup.object().shape({
   email: Yup.string().required("Required Field").email(),
 });
+
+export const editSchema = Yup.object().shape({
+  name: Yup.string(),
+  email: Yup.string().email(),
+  password: Yup.string()
+    .min(8, "Password must have at least 8 characters"),
+});

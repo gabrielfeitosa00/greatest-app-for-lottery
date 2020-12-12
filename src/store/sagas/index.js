@@ -1,9 +1,11 @@
 import { takeEvery,all } from "redux-saga/effects";
 
 import {Types as AuthTypes} from "../reducers/auth";
-import {Types as GameTypes} from '../reducers/games'
+import {Types as GameTypes} from '../reducers/games';
+import {Types as ProfileTypes} from "../reducers/profile";
 import {SignUp,SignIn,Logout,CheckAuth} from "./auth";
 import {InitGames,PostGames,GetGames} from "./games"
+import {EditProfile, GetProfile} from "./profile"
 
 export function* watchAuth(){
     yield all([
@@ -26,6 +28,7 @@ export function* watchGame(){
 
 export function* watchProfile(){
     yield all([
-
+        takeEvery(ProfileTypes.PROFILE_GET,GetProfile),
+        takeEvery(ProfileTypes.PROFILE_EDIT,EditProfile)
     ])
 }
