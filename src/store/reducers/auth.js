@@ -85,8 +85,8 @@ export const Creators = {
    ForgotPasswordAsync: (email) =>{
     return{type: Types.AUTH_FORGOT_PASSWORD, email}
    },
-   ResetPasswordAsync: (password,passwordConfirm) =>{
-     return{type: Types.AUTH_UPDATE_PASSWORD,password,passwordConfirm}
+   ResetPasswordAsync: (password,passwordConfirm,token) =>{
+     return{type: Types.AUTH_UPDATE_PASSWORD,password,passwordConfirm,token}
    },
    CheckAuthState : () =>{
     return { type: Types.AUTH_CHECK_STATE };

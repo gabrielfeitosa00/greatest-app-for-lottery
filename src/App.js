@@ -4,7 +4,7 @@ import AuthLayout from "./hoc/Layout/AuthLayout/AuthLayout";
 import SignIn from "./containers/Auth/Forms/SignIn/SignIn";
 import SignUp from "./containers/Auth/Forms/SignUp/SignUp";
 import ResetPassword from "./containers/Auth/Forms/ResetPassword/ResetPassword";
-
+import NewPassword from "./containers/Auth/Forms/NewPassword/NewPassword"
 import GameLayout from "./hoc/Layout/GameLayout/GameLayout";
 import Games from "./containers/Games/Games";
 import NewGame from "./containers/NewGame/NewGame";
@@ -30,6 +30,7 @@ function App(props) {
         
         <Route path="/register" component={SignUp} />
         <Route path="/reset" component={ResetPassword} />
+        <Route path="/new_password" component={NewPassword}/>
         <Route exact path="/" component={SignIn} />
         <Redirect to="/" />
       </Switch>

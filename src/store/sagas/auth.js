@@ -1,6 +1,6 @@
 import { put } from "redux-saga/effects";
 import { Creators as AuthCreators } from "../reducers/auth";
-import axios from 'axios'
+import axios from 'axios';
 export function* SignUp(action) {
   const authData = {
     username: action.username,
@@ -65,6 +65,19 @@ export function* ForgotPassword(action){
   }
   try {
     const response = yield axios.post('http://127.0.0.1:3333/passwords',authData)
+  } catch (error) {
+    yield console.log(error.response.error)
+  }
+}
+
+export function* UpdatePassword(action){
+  const authData = {
+    password: action.password,
+    password_confirmation: action.passwordConfirm,
+    token: action.token
+  }
+  try {
+    const response = yield axios.put('http://127.0.0.1:3333/passwords',authData)
   } catch (error) {
     yield console.log(error.response.error)
   }

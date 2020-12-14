@@ -3,7 +3,7 @@ import { takeEvery,all } from "redux-saga/effects";
 import {Types as AuthTypes} from "../reducers/auth";
 import {Types as GameTypes} from '../reducers/games';
 import {Types as ProfileTypes} from "../reducers/profile";
-import {SignUp,SignIn,Logout,CheckAuth,ForgotPassword} from "./auth";
+import {SignUp,SignIn,Logout,CheckAuth,ForgotPassword, UpdatePassword,} from "./auth";
 import {InitGames,PostGames,GetGames} from "./games"
 import {EditProfile, GetProfile} from "./profile"
 
@@ -13,7 +13,8 @@ export function* watchAuth(){
         takeEvery(AuthTypes.AUTH_SINGIN,SignIn),
         takeEvery(AuthTypes.AUTH_LOGOUT,Logout),
         takeEvery(AuthTypes.AUTH_CHECK_STATE,CheckAuth),
-        takeEvery(AuthTypes.AUTH_FORGOT_PASSWORD,ForgotPassword)
+        takeEvery(AuthTypes.AUTH_FORGOT_PASSWORD,ForgotPassword),
+        takeEvery(AuthTypes.AUTH_UPDATE_PASSWORD,UpdatePassword)
     ])
 
    
