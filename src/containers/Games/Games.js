@@ -3,6 +3,7 @@ import { Creators as GameCreators } from "../../store/reducers/games";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Games.module.css";
 import { VscArrowRight } from "react-icons/vsc";
+import Pagination from "../../components/Navegation/Pagination/Pagination"
 import StyledButton from "../../components/UI/StyledComponents/StyledButton";
 import UnStyledLink from "../../components/Navegation/UnStyledLink/UnStyledLink";
 import GameTypes from "../../components/Games/GameTypes";
@@ -12,17 +13,20 @@ const Games = (props) => {
 
   const prevGames = useSelector((state) => state.games.prevGames);
 
+  const totalPages = useSelector((state)=> state.games.totalPages );
+
   const dispatch = useDispatch();
 
   const OnInitGames = useCallback(
     () => dispatch(GameCreators.FetchGameType()),
     [dispatch]
   );
-  const GetPrevGames = useCallback(() => dispatch(GameCreators.GetGames()), [
+  const GetPrevGames = useCallback((page) => dispatch(GameCreators.GetGames(page)), [
     dispatch,
   ]);
   const [filters, SetFilters] = useState([]);
   const [filteredGame, setFilteredGames] = useState(null);
+  const [currentPage,setCurrentPage] = useState(1)
 
   const handleFilter = (fil) => {
     let newFilters = [...filters];
@@ -41,19 +45,27 @@ const Games = (props) => {
     setFilteredGames(filteredContent);
   };
 
+  const handleNextPage = ()=>{
+    setCurrentPage( prevCurrentPage => prevCurrentPage + 1)
+  }
+
+  const handlePrevPage = ()=>{
+    setCurrentPage( prevCurrentPage => prevCurrentPage - 1)
+  }
 
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
   useEffect(() => {
-    GetPrevGames();
+    GetPrevGames(currentPage);
+  }, [GetPrevGames,currentPage]);
 
-  }, [GetPrevGames]);
-  
-  useEffect(()=>{
-    setFilteredGames(prevGames)
-    return ()=>{setFilteredGames(null)}
-  },[prevGames])
+  useEffect(() => {
+    setFilteredGames(prevGames);
+    return () => {
+      setFilteredGames(null);
+    };
+  }, [prevGames]);
   let games = <p>loading...</p>;
   if (filteredGame) {
     games = <GameCards cardObjs={filteredGame} />;
@@ -70,6 +82,7 @@ const Games = (props) => {
             activeArray={filters}
           />
         </div>
+        <Pagination next={handleNextPage} prev={handlePrevPage} currentPage={currentPage} lastPage={totalPages ? totalPages : 1}/>
         {games}
       </div>
 

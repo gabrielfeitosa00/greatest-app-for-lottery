@@ -1,0 +1,16 @@
+.PageIcons{
+    height: 9vh;
+    padding: 6px;
+    
+    margin-bottom: 10px;
+    
+}
+.PageIcon{
+    vertical-align: middle;
+    cursor: pointer;
+    width: 30px;
+    height:100%
+}
+.PageIcon :disabled{
+    cursor: not-allowed;
+}

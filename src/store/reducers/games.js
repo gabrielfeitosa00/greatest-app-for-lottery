@@ -8,6 +8,7 @@ export const Types = {
 const initialState = {
   types: null,
   prevGames: [],
+  totalPages: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +17,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, types: action.gameTypes };
     case Types.GAME_ADD:
       const currentGames = action.newGames
-      return { ...state, prevGames: currentGames };
+      return { ...state, prevGames: currentGames, totalPages:action.total };
 
     default:
       return state;
@@ -39,11 +40,11 @@ export const Creators = {
   PostGame: (newGames) =>{
     return {type : Types.GAME_POST,newGames}
   },
-  GetGames : ()=>{
-    return {type: Types.GAMES_GET}
+  GetGames : (page)=>{
+    return {type: Types.GAMES_GET,page}
   },
-  AddGame: (newGames) => {
-    return { type: Types.GAME_ADD, newGames };
+  AddGame: (newGames,total) => {
+    return { type: Types.GAME_ADD, newGames, total };
   },
 };
 

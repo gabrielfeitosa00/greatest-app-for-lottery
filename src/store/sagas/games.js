@@ -32,7 +32,7 @@ export function *GetGames(action){
   try {
     let formatedResponse = []
     const token = yield localStorage.getItem("token")
-    const response = yield axios.get("http://127.0.0.1:3333/games?limit=5&?page=1",{headers: { Authorization: `Bearer ${token}` }})
+    const response = yield axios.get(`http://127.0.0.1:3333/games?limit=5&page=${action.page}`,{headers: { Authorization: `Bearer ${token}` }})
     formatedResponse = response.data.data.map(game => {
 
       let dateObj = new Date(game.created_at)
@@ -41,7 +41,7 @@ export function *GetGames(action){
     })
     console.log(response)
     console.log(formatedResponse)
-    yield put(GameCreators.AddGame(formatedResponse))
+    yield put(GameCreators.AddGame(formatedResponse,response.data.lastPage))
   } catch (error) {
     yield console.log(error.response.error);
   }
