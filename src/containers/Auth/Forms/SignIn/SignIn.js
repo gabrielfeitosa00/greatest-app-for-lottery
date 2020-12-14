@@ -6,14 +6,20 @@ import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signInSchema } from "../../../../validation/FormSchemas";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Creators as AuthCreators } from "../../../../store/reducers/auth";
 import { Redirect } from "react-router-dom";
 
 const SignIn = (props) => {
-  const isAuth = useSelector(state=>state.auth.token !== null)
-  const dispatch = useDispatch()
-  const onSignin = (email, password) => dispatch(AuthCreators.SignInAsync(email, password))
+
+  const isAuth = useSelector((state) => state.auth.token !== null);
+  const dispatch = useDispatch();
+  const onSignin = (email, password) =>
+    dispatch(AuthCreators.SignInAsync(email, password));
+  const onClearError = ()=>dispatch(AuthCreators.AuthStart())
+  const authErrors = useSelector((state) => {
+    return state.auth.error;
+  });
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,6 +36,18 @@ const SignIn = (props) => {
       {isAuth && <Redirect to="/home" />}
       Authentication
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
+        {authErrors ? (
+          <p
+            style={{
+              fontWeight: "bold",
+              color: "black",
+              fontSize: "14px",
+              textAlign: "center",
+            }}
+          >
+            {authErrors}
+          </p>
+        ) : null}
         <FormInput
           name="email"
           type="email"
@@ -52,15 +70,15 @@ const SignIn = (props) => {
         {formik.errors.password ? (
           <p className={classes.Errors}>{formik.errors.password}</p>
         ) : null}
-        <p>
+        <p onClick={onClearError}>
           <UnStyledLink to="/reset">I forgot my password</UnStyledLink>
         </p>
-        <FormButton colored='#b5c401' size="35px" type="submit">
+        <FormButton colored="#b5c401" size="35px" type="submit">
           {" "}
           Log In <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
       </form>
-      <FormButton size="35px">
+      <FormButton onClick={onClearError} size="35px">
         <UnStyledLink to="/register">
           SignUp <VscArrowRight style={{ verticalAlign: "middle" }} />{" "}
         </UnStyledLink>
@@ -68,6 +86,5 @@ const SignIn = (props) => {
     </div>
   );
 };
-
 
 export default SignIn;

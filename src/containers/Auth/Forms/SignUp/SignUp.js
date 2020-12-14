@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useFormik } from "formik";
+import {Redirect} from "react-router-dom";
 import classes from "./SignUp.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
@@ -8,23 +9,39 @@ import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { signUpSchema } from "../../../../validation/FormSchemas";
 import { Creators as AuthCreators } from "../../../../store/reducers/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 
 const SignUp = (props) => {
+  
   const dispatch = useDispatch();
-  const OnSignUp = (username, email, password,password_confirmation) => dispatch(AuthCreators.SignUpAsync(username, email, password,password_confirmation))
+  const OnSignUp = (username, email, password, password_confirmation) =>
+    dispatch(
+      AuthCreators.SignUpAsync(username, email, password, password_confirmation)
+    );
+  const onClearError = ()=>dispatch(AuthCreators.AuthStart())
+  const authErrors = useSelector((state) => {
+    return state.auth.error;
+  });
   
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
-      password_confirmation:""
+      password_confirmation: "",
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      OnSignUp(values.name, values.email, values.password,values.password_confirmation);
-      props.history.push("/");
+      OnSignUp(
+        values.name,
+        values.email,
+        values.password,
+        values.password_confirmation
+      )
+      // will remove redirect for now, it doesn't work well with the errors :(
+      // if(!authErrors){
+      //   props.history.push("/")
+      // }
     },
   });
 
@@ -32,6 +49,20 @@ const SignUp = (props) => {
     <div className={classes.FormContainer}>
       Registration
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
+        {authErrors ? (
+          authErrors.map((errorItem,index) =><p
+            key={index}
+            style={{
+              fontWeight: "bold",
+              color: "black",
+              fontSize: "14px",
+              textAlign: "center",
+            }}
+          >
+            {errorItem}
+          </p>)
+
+        ) : null}
         <FormInput
           name="name"
           type="text"
@@ -74,7 +105,9 @@ const SignUp = (props) => {
           placeholder="Password Confirmation"
         />
         {formik.errors.password_confirmation ? (
-          <p className={classes.Errors}>{formik.errors.password_confirmation}</p>
+          <p className={classes.Errors}>
+            {formik.errors.password_confirmation}
+          </p>
         ) : null}
 
         <FormButton colored="#b5c401" type="submit" size="35px">
@@ -82,7 +115,7 @@ const SignUp = (props) => {
           Register <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
       </form>
-      <FormButton size="35px">
+      <FormButton onClick ={onClearError} size="35px">
         <UnStyledLink to="/">
           <VscArrowLeft style={{ verticalAlign: "middle" }} />
           Back

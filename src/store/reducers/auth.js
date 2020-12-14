@@ -1,11 +1,12 @@
 export const Types = {
+  AUTH_START : "AUTH_START",
   AUTH_LOGOUT: "AUTH_LOGOUT",
   AUTH_LOGOUT_SUCCESS: "AUTH_LOGOUT_SUCCESS",
 
   AUTH_SINGIN: "AUTH_SINGIN",
   AUTH_SINGIN_SUCCESS: " AUTH_SINGIN_SUCCESS",
 
-  AUTH_SINGUP_START: "AUTH_SINGUP_START",
+  AUTH_SINGUP_SUCCESS: "AUTH_SINGUP_SUCCESS",
   AUTH_SINGUP: "AUTH_SINGUP",
 
   AUTH_FORGOT_PASSWORD: "AUTH_FORGOT_PASSWORD",
@@ -26,30 +27,39 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case Types.AUTH_SINGUP_START:
+    case Types.AUTH_START:
+      return{...state, error:null}
+    case Types.AUTH_SINGUP_SUCCESS:
       return {
         ...state,
         username: action.name,
         email: action.email,
         password: action.password,
+        error:null
       };
     case Types.AUTH_SINGIN_SUCCESS:
       return {
         ...state,
         token: action.token,
+        error:null
       };
     case Types.AUTH_LOGOUT_SUCCESS:
       return { ...state, username: "", password: "", email: "", token: null };
-    default:
+    case Types.AUTH_FAILED:
+      return{...state,error:action.error}
+      default:
       return state;
   }
 };
 
 
 export const Creators = {
-   SignUpStart : (name, email, password) => {
+  AuthStart:()=>{
+    return{type: Types.AUTH_START}
+  },
+   SignUpSuccess : (name, email, password) => {
     return {
-      type: Types.AUTH_SINGUP_START,
+      type: Types.AUTH_SINGUP_SUCCESS,
       name,
       email,
       password,
@@ -91,5 +101,8 @@ export const Creators = {
    CheckAuthState : () =>{
     return { type: Types.AUTH_CHECK_STATE };
   },
+  AuthFail:(error)=>{
+    return{type: Types.AUTH_FAILED, error}
+  }
 }
 export default reducer;

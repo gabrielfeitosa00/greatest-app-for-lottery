@@ -2,6 +2,7 @@ import { put } from "redux-saga/effects";
 import { Creators as AuthCreators } from "../reducers/auth";
 import axios from 'axios';
 export function* SignUp(action) {
+  yield put(AuthCreators.AuthStart())
   const authData = {
     username: action.username,
     email:action.email,
@@ -13,18 +14,18 @@ export function* SignUp(action) {
   try {
     
     const response = yield axios.post('http://127.0.0.1:3333/signup',authData)
-    yield put(AuthCreators.SignUpStart(response.name, response.email, response.password));
+    yield put(AuthCreators.SignUpSuccess(response.name, response.email, response.password));
   } catch (error) {
- 
-    yield console.log(error.response.error)
+    yield console.log("My Error: ",error.response)
+    const errorMessages = error.response.data.map(item => item.message)
+    yield put(AuthCreators.AuthFail(errorMessages))
   }
-  // yield localStorage.setItem("name", action.name);
-  // yield localStorage.setItem("email", action.email);
-  // yield localStorage.setItem("password", action.password);
+
   
 }
 
 export function* SignIn(action) {
+  yield put(AuthCreators.AuthStart())
   const authData = {
     email: action.email,
     password: action.password,
@@ -35,30 +36,20 @@ export function* SignIn(action) {
     yield put(AuthCreators.SignInSuccess(response.data.token));
     yield localStorage.setItem("token", response.data.token);
   } catch (error) {
-    yield console.log(error.response.error)
+    yield put(AuthCreators.AuthFail(error.response.data.message))
   }
-  // const currentEmail = yield localStorage.getItem("email");
-  // const currentPassword = yield localStorage.getItem("password");
 
-  // if (
-  //   !currentEmail ||
-  //   !currentPassword ||
-  //   currentEmail !== action.email ||
-  //   currentPassword !== action.password
-  // ) {
-  //   yield console.log("fazer tratamento de erro direito dps");
-  // } else {
-  //   yield put(AuthCreators.SignInSuccess(action.email,action.password));
-  // }
 }
 
 export function* Logout(){
+  yield put(AuthCreators.AuthStart())
   yield localStorage.removeItem("token");
   yield localStorage.removeItem("localId");
   yield put(AuthCreators.LogoutSuccess());
 }
 
 export function* ForgotPassword(action){
+  yield put(AuthCreators.AuthStart())
   const authData = {
     email: action.email,
     redirect_url: `http://localhost:3000/greatest-app-for-lottery/new_password`,
@@ -66,11 +57,12 @@ export function* ForgotPassword(action){
   try {
     const response = yield axios.post('http://127.0.0.1:3333/passwords',authData)
   } catch (error) {
-    yield console.log(error.response.error)
+    yield put(AuthCreators.AuthFail(error.response.error))
   }
 }
 
 export function* UpdatePassword(action){
+  yield put(AuthCreators.AuthStart())
   const authData = {
     password: action.password,
     password_confirmation: action.passwordConfirm,
@@ -79,7 +71,7 @@ export function* UpdatePassword(action){
   try {
     const response = yield axios.put('http://127.0.0.1:3333/passwords',authData)
   } catch (error) {
-    yield console.log(error.response.error)
+    yield put(AuthCreators.AuthFail(error.response.error))
   }
 }
 
