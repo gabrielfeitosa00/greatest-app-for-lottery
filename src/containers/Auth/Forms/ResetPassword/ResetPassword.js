@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import classes from "./ResetPassword.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
@@ -6,8 +7,12 @@ import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { resetSchema } from "../../../../validation/FormSchemas";
+import { Creators as AuthCreators } from "../../../../store/reducers/auth";
 
 const ResetPassword = (props) => {
+  const dispatch = useDispatch();
+  const OnForgotPassword = (email) =>
+    dispatch(AuthCreators.ForgotPasswordAsync(email));
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -16,6 +21,7 @@ const ResetPassword = (props) => {
     },
     validationSchema: resetSchema,
     onSubmit: (values) => {
+      OnForgotPassword(values.email);
       props.history.push("/");
     },
   });
@@ -35,7 +41,7 @@ const ResetPassword = (props) => {
         {formik.errors.email ? (
           <p className={classes.Errors}>{formik.errors.email}</p>
         ) : null}
-        <FormButton colored='#B5C401' size="35px" type="submit">
+        <FormButton colored="#B5C401" size="35px" type="submit">
           {" "}
           Send Link <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>

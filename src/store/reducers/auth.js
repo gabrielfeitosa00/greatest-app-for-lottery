@@ -1,11 +1,18 @@
 export const Types = {
   AUTH_LOGOUT: "AUTH_LOGOUT",
   AUTH_LOGOUT_SUCCESS: "AUTH_LOGOUT_SUCCESS",
+
   AUTH_SINGIN: "AUTH_SINGIN",
+  AUTH_SINGIN_SUCCESS: " AUTH_SINGIN_SUCCESS",
+
   AUTH_SINGUP_START: "AUTH_SINGUP_START",
   AUTH_SINGUP: "AUTH_SINGUP",
-  AUTH_SINGIN_SUCCESS: " AUTH_SINGIN_SUCCESS",
+
+  AUTH_FORGOT_PASSWORD: "AUTH_FORGOT_PASSWORD",
+  AUTH_UPDATE_PASSWORD: "AUTH_UPDATE_PASSWORD",
+
   AUTH_FAILED: "AUTH_FAILED",
+
   AUTH_CHECK_STATE: "AUTH_CHECK_STATE",
 };
 
@@ -75,7 +82,12 @@ export const Creators = {
    LogoutAsync : () => {
     return { type: Types.AUTH_LOGOUT };
   },
-  
+   ForgotPasswordAsync: (email) =>{
+    return{type: Types.AUTH_FORGOT_PASSWORD, email}
+   },
+   ResetPasswordAsync: (password,passwordConfirm) =>{
+     return{type: Types.AUTH_UPDATE_PASSWORD,password,passwordConfirm}
+   },
    CheckAuthState : () =>{
     return { type: Types.AUTH_CHECK_STATE };
   },

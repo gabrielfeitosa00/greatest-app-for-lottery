@@ -58,6 +58,18 @@ export function* Logout(){
   yield put(AuthCreators.LogoutSuccess());
 }
 
+export function* ForgotPassword(action){
+  const authData = {
+    email: action.email,
+    redirect_url: `http://localhost:3000/greatest-app-for-lottery/new_password`,
+  }
+  try {
+    const response = yield axios.post('http://127.0.0.1:3333/passwords',authData)
+  } catch (error) {
+    yield console.log(error.response.error)
+  }
+}
+
 export function* CheckAuth(){
   const currentToken = yield localStorage.getItem("token")
   if(!currentToken){

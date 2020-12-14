@@ -26,3 +26,12 @@ export const editSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Password must have at least 8 characters"),
 });
+
+export const newPasswordSchema = Yup.object().shape({
+  password: Yup.string()
+    .required("Required Field")
+    .min(8, "Password must have at least 8 characters"),
+  password_confirmation: Yup.string()
+    .required("Required Field")
+    .min(8, "Password must have at least 8 characters"),
+})
