@@ -4,16 +4,27 @@ import {formatDate} from "../../utils/utility"
 import axios from "axios";
 
 export function* InitGames(action) {
+  yield put(GameCreators.GameStart())
   try {
     const token = yield localStorage.getItem("token")
     const response  = yield axios.get("http://127.0.0.1:3333/gametypes",{headers: { Authorization: `Bearer ${token}` }});
     yield put(GameCreators.SetGameType(response.data));
   } catch (error) {
+    yield console.log(error)
+    if(error.response === undefined){
+      yield put(GameCreators.FailGame(error.message))
+    } else {
+      const errorMessages = Array.isArray(error.response.data)
+      ? error.response.data.map((item) => item.message)
+      : error.response.data.message;
+    yield put(GameCreators.FailGame(errorMessages));
+    }
     yield console.log(error.response.error);
   }
 }
 
 export function *PostGames(action){
+  yield put(GameCreators.GameStart())
   const gamePayload = {
     games: action.newGames
     
@@ -21,13 +32,23 @@ export function *PostGames(action){
   try {
     const token = yield localStorage.getItem("token")
     const response = yield axios.post("http://127.0.0.1:3333/games",gamePayload,{headers: { Authorization: `Bearer ${token}` }})
-    // yield put(GameCreators.AddGame(response.data))
+    
   } catch (error) {
+    yield console.log(error)
+    if(error.response === undefined){
+      yield put(GameCreators.FailGame(error.message))
+    } else {
+      const errorMessages = Array.isArray(error.response.data)
+      ? error.response.data.map((item) => item.message)
+      : error.response.data.message;
+    yield put(GameCreators.FailGame(errorMessages));
+    }
     yield console.log(error.response.error);
   }
 }
 
 export function *GetGames(action){
+  yield put(GameCreators.GameStart())
  
   try {
     let formatedResponse = []
@@ -39,10 +60,17 @@ export function *GetGames(action){
 
       return { numbers : game.numbers, color: game.gametype.color,price:game.gametype.price,name:game.gametype.type, date: formatDate(dateObj)}
     })
-    console.log(response)
-    console.log(formatedResponse)
+
     yield put(GameCreators.AddGame(formatedResponse,response.data.lastPage))
   } catch (error) {
+    if(error.response === undefined){
+      yield put(GameCreators.FailGame(error.message))
+    } else {
+      const errorMessages = Array.isArray(error.response.data)
+      ? error.response.data.map((item) => item.message)
+      : error.response.data.message;
+    yield put(GameCreators.FailGame(errorMessages));
+    }
     yield console.log(error.response.error);
   }
 }

@@ -10,7 +10,7 @@ import GameTypes from "../../components/Games/GameTypes";
 import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
   const types = useSelector((state) => state.games.types);
-
+  const gameError = useSelector((state)=>state.games.error)
   const prevGames = useSelector((state) => state.games.prevGames);
 
   const totalPages = useSelector((state)=> state.games.totalPages );
@@ -70,17 +70,21 @@ const Games = (props) => {
   if (filteredGame) {
     games = <GameCards cardObjs={filteredGame} />;
   }
+  
   return (
     <div className={classes.Games}>
       <div className={classes.GameContent}>
         <div className={classes.GamesHeader}>
           <h3>RECENT GAMES</h3>
           <p>Filters</p>
-          <GameTypes
+          {
+            gameError ? <p style={{fontWeight:"bold", color:"red"}}>{gameError}</p>:           <GameTypes
             types={types}
             clickHandler={handleFilter}
             activeArray={filters}
           />
+          }
+
         </div>
         <Pagination next={handleNextPage} prev={handlePrevPage} currentPage={currentPage} lastPage={totalPages ? totalPages : 1}/>
         {games}

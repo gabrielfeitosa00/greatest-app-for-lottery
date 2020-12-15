@@ -14,6 +14,7 @@ const NewGame = (props) => {
   const [betObject, setBetObject] = useState(null);
 
   const  types = useSelector(state=>state.games.types)
+  const gameError = useSelector(state=>state.games.error)
   const dispatch = useDispatch();
   const OnInitGames = useCallback (() => dispatch(GameCreators.FetchGameType()),[dispatch])
 
@@ -22,6 +23,7 @@ const NewGame = (props) => {
       const selectedType = types.filter(
         (typeItem) => typeItem.type === currType
       );
+      
       setCurrentType(selectedType[0]);
     },
     [types]
@@ -79,21 +81,27 @@ const NewGame = (props) => {
     if (types) selectGameType(types[0].type);
   }, [types, selectGameType]);
 
-
+  let betProvider = currentType ? currentType.type.toUpperCase() : "loading..."
+  let gameDescription = currentType ? currentType.description : "loading..."
+  if(gameError){
+    betProvider = "NOT_FOUND"
+    gameDescription = "NOT_FOUND"
+  }
   return (
     <div className={classes.NewGame}>
       <div className={classes.Content}>
         <h3 style={{ fontSize: "24px", paddingLeft: "8px" }}>
           <strong>NEW BET</strong> FOR{" "}
-          {currentType ? currentType.type.toUpperCase() : "loading..."}
+          {betProvider}
         </h3>
         <div className="betHeader">
           <p style={{ fontSize: "17px", paddingLeft: "8px" }}>Choose a game</p>
-          <GameTypes
+          {gameError? <p style={{fontWeight:"bold",color:"red"}}>{gameError}</p>:           <GameTypes
             types={types}
             clickHandler={selectGameType}
             activeArray={currentType ? [currentType.type] : null}
-          />
+          />}
+
         </div>
         <div>
           <p style={{ fontSize: "17px", paddingLeft: "8px" }}>
@@ -102,16 +110,19 @@ const NewGame = (props) => {
           </p>
           <p style={{ fontSize: "17px", paddingLeft: "8px" }}>
             {" "}
-            {currentType ? currentType.description : "loading..."}
+            {gameDescription}
           </p>
         </div>
-        <NumberGrid
+        {
+          gameError ? <p style={{fontWeight:"bold",color:"red"}}>{gameError}</p> : <NumberGrid
           max={currentType ? currentType["max-number"] : null}
           numberClickHandler={numberButtonHandler}
           bet={currentBet}
           color={currentType ? currentType.color : null}
           total={currentType ? currentType.range : null}
         />
+        }
+   
         <CartButtons
           shouldBeDisabled={currentBet.length === 0}
           shouldAutoCompleteBeDisabled={currentType===null}

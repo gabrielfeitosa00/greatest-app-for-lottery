@@ -97,7 +97,6 @@ export function* UpdatePassword(action) {
       const errorMessages = Array.isArray(error.response.data)
         ? error.response.data.map((item) => item.message)
         : error.response.data.message;
-      yield console.log("test ", +error.response.data);
       yield put(AuthCreators.AuthFail(errorMessages));
     }
   }
