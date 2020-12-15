@@ -1,13 +1,19 @@
 import React from "react";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import classes from "./NewPassword.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
 import FormInput from "../../../../components/UI/StyledComponents/StyledInput";
 import { newPasswordSchema } from "../../../../validation/FormSchemas";
 import { Creators as AuthCreators } from "../../../../store/reducers/auth";
-
+import{Redirect} from "react-router-dom"
 const NewPassword = (props) => {
+  const authErrors = useSelector((state) => {
+    return state.auth.error;
+  });
+  const loadingState = useSelector((state) => {
+    return state.auth.loading;
+  });
   const dispatch = useDispatch();
   const onUpdatePassword = (password, confirmation, token) =>
     dispatch(AuthCreators.ResetPasswordAsync(password, confirmation, token));
@@ -21,8 +27,6 @@ const NewPassword = (props) => {
     validationSchema: newPasswordSchema,
     onSubmit: (values) => {
       onUpdatePassword(values.password, values.password_confirmation, token);
-      //fazer ficar na página se o token não passar
-        props.history.push("/");
     },
   });
 
@@ -30,6 +34,35 @@ const NewPassword = (props) => {
     <div className={classes.FormContainer}>
       Update your password
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
+        {/* {!authErrors && !loadingState ? <Redirect to="/" /> : null} */}
+        {authErrors ? (
+          typeof authErrors==='object'? (
+            authErrors.map((errorItem, index) => (
+              <p
+                key={index}
+                style={{
+                  fontWeight: "bold",
+                  color: "black",
+                  fontSize: "14px",
+                  textAlign: "center",
+                }}
+              >
+                {errorItem}
+              </p>
+            ))
+          ) : (
+            <p
+              style={{
+                fontWeight: "bold",
+                color: "black",
+                fontSize: "14px",
+                textAlign: "center",
+              }}
+            >
+              {authErrors}
+            </p>
+          )
+        ) : null}
         <FormInput
           name="password"
           type="password"

@@ -27,7 +27,6 @@ export function* SignUp(action) {
       throw errorMessages;
     } else {
       errorMessages = error.response.data.map((item) => item.message);
-      yield console.log("My Error: ", errorMessages);
 
       yield put(AuthCreators.AuthFail(errorMessages));
     }
@@ -74,8 +73,16 @@ export function* ForgotPassword(action) {
       "http://127.0.0.1:3333/passwords",
       authData
     );
+    yield put(AuthCreators.ForgotPasswordSuccess())
   } catch (error) {
-    yield put(AuthCreators.AuthFail(error.response.error));
+    if (error.response === undefined) {
+      let errorMsg = new Error(`It wasn't possible to connect to the server`);
+      yield put(AuthCreators.AuthFail(errorMsg.message));
+      throw errorMsg;
+    } else {
+    
+      yield put(AuthCreators.AuthFail(error.response.data.message));
+    }
   }
 }
 
@@ -91,8 +98,19 @@ export function* UpdatePassword(action) {
       "http://127.0.0.1:3333/passwords",
       authData
     );
+    yield put(AuthCreators.ForgotPasswordSuccess())
   } catch (error) {
-    yield put(AuthCreators.AuthFail(error.response.error));
+    let errorMessages= null
+    if (error.response === undefined) {
+       errorMessages = new Error(`It wasn't possible to connect to the server`);
+      yield put(AuthCreators.AuthFail(errorMessages.message));
+      throw errorMessages;
+    } else {
+      errorMessages= Array.isArray(error.response.data) ? error.response.data.map((item) => item.message) : error.response.data.message
+      yield console.log('test ' , + error.response.data)
+      yield put(AuthCreators.AuthFail(errorMessages));
+    }
+
   }
 }
 

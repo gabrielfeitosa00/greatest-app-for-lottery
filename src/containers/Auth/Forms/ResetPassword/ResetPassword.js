@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import classes from "./ResetPassword.module.css";
 import FormButton from "../../../../components/UI/StyledComponents/StyledButton";
@@ -8,9 +8,18 @@ import { VscArrowRight, VscArrowLeft } from "react-icons/vsc";
 import UnStyledLink from "../../../../components/Navegation/UnStyledLink/UnStyledLink";
 import { resetSchema } from "../../../../validation/FormSchemas";
 import { Creators as AuthCreators } from "../../../../store/reducers/auth";
+import { Redirect } from "react-router-dom";
 
 const ResetPassword = (props) => {
+  const authErrors = useSelector((state) => {
+    return state.auth.error;
+  });
+  const loadingState = useSelector((state) => {
+    return state.auth.loading;
+  });
   const dispatch = useDispatch();
+  const onClearError = () => dispatch(AuthCreators.AuthStart());
+
   const OnForgotPassword = (email) =>
     dispatch(AuthCreators.ForgotPasswordAsync(email));
   const formik = useFormik({
@@ -22,7 +31,6 @@ const ResetPassword = (props) => {
     validationSchema: resetSchema,
     onSubmit: (values) => {
       OnForgotPassword(values.email);
-      props.history.push("/");
     },
   });
 
@@ -30,6 +38,35 @@ const ResetPassword = (props) => {
     <div className={classes.FormContainer}>
       Reset password
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
+        {authErrors ? (
+          typeof authErrors === "object" ? (
+            authErrors.map((errorItem, index) => (
+              <p
+                key={index}
+                style={{
+                  fontWeight: "bold",
+                  color: "black",
+                  fontSize: "14px",
+                  textAlign: "center",
+                }}
+              >
+                {errorItem}
+              </p>
+            ))
+          ) : (
+            <p
+              style={{
+                fontWeight: "bold",
+                color: "black",
+                fontSize: "14px",
+                textAlign: "center",
+              }}
+            >
+              {authErrors}
+            </p>
+          )
+        ) : null}
+        {!authErrors && !loadingState ? <Redirect to="/" /> : null}
         <FormInput
           name="email"
           type="email"
@@ -46,7 +83,7 @@ const ResetPassword = (props) => {
           Send Link <VscArrowRight style={{ verticalAlign: "middle" }} />
         </FormButton>
       </form>
-      <FormButton size="35px">
+      <FormButton size="35px" onClick={onClearError}>
         <UnStyledLink to="/">
           <VscArrowLeft style={{ verticalAlign: "middle" }} /> Back{" "}
         </UnStyledLink>

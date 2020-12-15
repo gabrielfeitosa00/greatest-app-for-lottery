@@ -21,6 +21,7 @@ const SignUp = (props) => {
   const authErrors = useSelector((state) => {
     return state.auth.error;
   });
+  const loadingState = useSelector(state=>state.auth.loading)
 
   const formik = useFormik({
     initialValues: {
@@ -37,10 +38,6 @@ const SignUp = (props) => {
         values.password,
         values.password_confirmation
       );
-      // will remove redirect for now, it doesn't work well with the errors :(
-      // if(!authErrors){
-      //   props.history.push("/")
-      // }
     },
   });
 
@@ -76,6 +73,7 @@ const SignUp = (props) => {
             </p>
           )
         ) : null}
+        {!authErrors&& !loadingState ? <Redirect to='/'/>:null}
         <FormInput
           name="name"
           type="text"
