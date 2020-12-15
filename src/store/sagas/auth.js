@@ -20,14 +20,12 @@ export function* SignUp(action) {
       )
     );
   } catch (error) {
-    let errorMessages = null;
+   
     if (error.response === undefined) {
-      errorMessages = new Error(`It wasn't possible to connect to the server`);
-      yield put(AuthCreators.AuthFail(errorMessages.message));
-      throw errorMessages;
+      yield put(AuthCreators.AuthFail(error.message));
+     
     } else {
-      errorMessages = error.response.data.map((item) => item.message);
-
+      const errorMessages = error.response.data.map((item) => item.message);
       yield put(AuthCreators.AuthFail(errorMessages));
     }
   }
@@ -46,9 +44,7 @@ export function* SignIn(action) {
     yield localStorage.setItem("token", response.data.token);
   } catch (error) {
     if (error.response === undefined) {
-      let errorMsg = new Error(`It wasn't possible to connect to the server`);
-      yield put(AuthCreators.AuthFail(errorMsg.message));
-      throw errorMsg;
+      yield put(AuthCreators.AuthFail(error.message));
     } else {
       yield put(AuthCreators.AuthFail(error.response.data.message));
     }
@@ -76,9 +72,8 @@ export function* ForgotPassword(action) {
     yield put(AuthCreators.ForgotPasswordSuccess())
   } catch (error) {
     if (error.response === undefined) {
-      let errorMsg = new Error(`It wasn't possible to connect to the server`);
-      yield put(AuthCreators.AuthFail(errorMsg.message));
-      throw errorMsg;
+     
+      yield put(AuthCreators.AuthFail(error.message));
     } else {
     
       yield put(AuthCreators.AuthFail(error.response.data.message));
@@ -100,13 +95,13 @@ export function* UpdatePassword(action) {
     );
     yield put(AuthCreators.ForgotPasswordSuccess())
   } catch (error) {
-    let errorMessages= null
+  
     if (error.response === undefined) {
-       errorMessages = new Error(`It wasn't possible to connect to the server`);
-      yield put(AuthCreators.AuthFail(errorMessages.message));
-      throw errorMessages;
+       
+      yield put(AuthCreators.AuthFail(error.message));
+     
     } else {
-      errorMessages= Array.isArray(error.response.data) ? error.response.data.map((item) => item.message) : error.response.data.message
+      const errorMessages= Array.isArray(error.response.data) ? error.response.data.map((item) => item.message) : error.response.data.message
       yield console.log('test ' , + error.response.data)
       yield put(AuthCreators.AuthFail(errorMessages));
     }

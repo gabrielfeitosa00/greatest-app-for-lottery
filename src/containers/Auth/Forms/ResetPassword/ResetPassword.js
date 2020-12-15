@@ -66,7 +66,7 @@ const ResetPassword = (props) => {
             </p>
           )
         ) : null}
-        {!authErrors && !loadingState ? <Redirect to="/" /> : null}
+        {authErrors===null && !loadingState ? <Redirect to="/" /> : null}
         <FormInput
           name="email"
           type="email"

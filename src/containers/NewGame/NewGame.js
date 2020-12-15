@@ -23,8 +23,6 @@ const NewGame = (props) => {
         (typeItem) => typeItem.type === currType
       );
       setCurrentType(selectedType[0]);
-      console.log("selected Type " + selectedType[0]);
-      console.log("my Current Game" + currType);
     },
     [types]
   );
@@ -69,7 +67,6 @@ const NewGame = (props) => {
       price: currentType.price,
       date:formatedDate,
     };
-    console.log(newBetObj)
     setBetObject(newBetObj);
     clearBetHandler();
   };
@@ -117,6 +114,7 @@ const NewGame = (props) => {
         />
         <CartButtons
           shouldBeDisabled={currentBet.length === 0}
+          shouldAutoCompleteBeDisabled={currentType===null}
           shouldPurchase={
             currentType ? currentBet.length < currentType["max-number"] : true
           }
