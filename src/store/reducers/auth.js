@@ -26,12 +26,13 @@ const initialState = {
   token: null,
   loading: false,
   error: null,
+  success:false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Types.AUTH_START:
-      return { ...state, error: null, loading: true };
+      return { ...state, error: null, loading: true,success:false };
     case Types.AUTH_SINGUP_SUCCESS:
       return {
         ...state,
@@ -40,6 +41,7 @@ const reducer = (state = initialState, action) => {
         password: action.password,
         error: null,
         loading: false,
+        success:true
       };
     case Types.AUTH_SINGIN_SUCCESS:
       return {
@@ -47,13 +49,14 @@ const reducer = (state = initialState, action) => {
         token: action.token,
         error: null,
         loading: false,
+        success:true
       };
     case Types.AUTH_LOGOUT_SUCCESS:
       return { ...state, username: "", password: "", email: "", token: null };
     case Types.AUTH_FORGOT_PASSWORD_SUCCESS:
-      return { ...state, error: null, loading: false };
+      return { ...state, error: null, loading: false, success:true };
     case Types.AUTH_FAILED:
-      return { ...state, error: action.error, loading: false };
+      return { ...state, error: action.error, loading: false,success:false };
     default:
       return state;
   }
@@ -107,10 +110,10 @@ export const Creators = {
   ForgotPasswordAsync: (email) => {
     return { type: Types.AUTH_FORGOT_PASSWORD, email };
   },
-  ForgotPasswordSuccess:()=>{
-    return{
-      type: Types.AUTH_FORGOT_PASSWORD_SUCCESS
-    }
+  ForgotPasswordSuccess: () => {
+    return {
+      type: Types.AUTH_FORGOT_PASSWORD_SUCCESS,
+    };
   },
   ResetPasswordAsync: (password, passwordConfirm, token) => {
     return {

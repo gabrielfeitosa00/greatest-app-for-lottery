@@ -20,10 +20,8 @@ export function* SignUp(action) {
       )
     );
   } catch (error) {
-   
     if (error.response === undefined) {
       yield put(AuthCreators.AuthFail(error.message));
-     
     } else {
       const errorMessages = error.response.data.map((item) => item.message);
       yield put(AuthCreators.AuthFail(errorMessages));
@@ -69,13 +67,11 @@ export function* ForgotPassword(action) {
       "http://127.0.0.1:3333/passwords",
       authData
     );
-    yield put(AuthCreators.ForgotPasswordSuccess())
+    yield put(AuthCreators.ForgotPasswordSuccess());
   } catch (error) {
     if (error.response === undefined) {
-     
       yield put(AuthCreators.AuthFail(error.message));
     } else {
-    
       yield put(AuthCreators.AuthFail(error.response.data.message));
     }
   }
@@ -93,19 +89,17 @@ export function* UpdatePassword(action) {
       "http://127.0.0.1:3333/passwords",
       authData
     );
-    yield put(AuthCreators.ForgotPasswordSuccess())
+    yield put(AuthCreators.ForgotPasswordSuccess());
   } catch (error) {
-  
     if (error.response === undefined) {
-       
       yield put(AuthCreators.AuthFail(error.message));
-     
     } else {
-      const errorMessages= Array.isArray(error.response.data) ? error.response.data.map((item) => item.message) : error.response.data.message
-      yield console.log('test ' , + error.response.data)
+      const errorMessages = Array.isArray(error.response.data)
+        ? error.response.data.map((item) => item.message)
+        : error.response.data.message;
+      yield console.log("test ", +error.response.data);
       yield put(AuthCreators.AuthFail(errorMessages));
     }
-
   }
 }
 

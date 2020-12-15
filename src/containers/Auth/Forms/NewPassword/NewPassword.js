@@ -8,11 +8,10 @@ import { newPasswordSchema } from "../../../../validation/FormSchemas";
 import { Creators as AuthCreators } from "../../../../store/reducers/auth";
 import {Redirect} from "react-router-dom"
 const NewPassword = (props) => {
-  const [isSubmitted,setIsSubmitted]= useState(false)
   const authErrors = useSelector((state) => {
     return state.auth.error;
   });
-
+  const successState = useSelector(state=>{return state.auth.success})
   const dispatch = useDispatch();
   const onUpdatePassword = (password, confirmation, token) =>
     dispatch(AuthCreators.ResetPasswordAsync(password, confirmation, token));
@@ -26,7 +25,7 @@ const NewPassword = (props) => {
     validationSchema: newPasswordSchema,
     onSubmit: (values) => {
       onUpdatePassword(values.password, values.password_confirmation, token);
-      setIsSubmitted(true)
+      
     },
   });
 
@@ -34,7 +33,7 @@ const NewPassword = (props) => {
     <div className={classes.FormContainer}>
       Update your password
       <form onSubmit={formik.handleSubmit} className={classes.Form}>
-        {!authErrors && isSubmitted ? <Redirect to="/" /> : null}
+        {!authErrors && successState ? <Redirect to="/" /> : null}
         {authErrors ? (
           typeof authErrors==='object'? (
             authErrors.map((errorItem, index) => (
