@@ -16,7 +16,7 @@ const initialState = {
   success: false,
 };
 
-const reducer = (state = initialState, action) => {
+export default  function games  (state = initialState, action) {
   switch (action.type) {
     case Types.GAME_START:
       return { ...state, error: null, loading: true, success: false };
@@ -78,4 +78,4 @@ export const Creators = {
   }
 };
 
-export default reducer;
+

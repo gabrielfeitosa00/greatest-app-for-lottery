@@ -2,12 +2,12 @@ import { put } from "redux-saga/effects";
 import {Creators as GameCreators} from "../reducers/games"
 import {formatDate} from "../../utils/utility"
 import axios from "axios";
-
+import {BASE_URL} from "../../services/api";
 export function* InitGames(action) {
   yield put(GameCreators.GameStart())
   try {
     const token = yield localStorage.getItem("token")
-    const response  = yield axios.get("http://127.0.0.1:3333/gametypes",{headers: { Authorization: `Bearer ${token}` }});
+    const response  = yield axios.get(`${BASE_URL}gametypes`,{headers: { Authorization: `Bearer ${token}` }});
     yield put(GameCreators.SetGameType(response.data));
   } catch (error) {
     yield console.log(error)
@@ -31,7 +31,7 @@ export function *PostGames(action){
   }
   try {
     const token = yield localStorage.getItem("token")
-    const response = yield axios.post("http://127.0.0.1:3333/games",gamePayload,{headers: { Authorization: `Bearer ${token}` }})
+    const response = yield axios.post(`${BASE_URL}games`,gamePayload,{headers: { Authorization: `Bearer ${token}` }})
     
   } catch (error) {
     yield console.log(error)
@@ -53,7 +53,7 @@ export function *GetGames(action){
   try {
     let formatedResponse = []
     const token = yield localStorage.getItem("token")
-    const response = yield axios.get(`http://127.0.0.1:3333/games?limit=5&page=${action.page}`,{headers: { Authorization: `Bearer ${token}` }})
+    const response = yield axios.get(`${BASE_URL}games?limit=5&page=${action.page}`,{headers: { Authorization: `Bearer ${token}` }})
     formatedResponse = response.data.data.map(game => {
 
       let dateObj = new Date(game.created_at)
@@ -71,6 +71,6 @@ export function *GetGames(action){
       : error.response.data.message;
     yield put(GameCreators.FailGame(errorMessages));
     }
-    yield console.log(error.response.error);
+    
   }
 }

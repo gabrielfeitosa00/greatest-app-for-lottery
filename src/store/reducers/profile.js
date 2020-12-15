@@ -18,7 +18,7 @@ const initialState = {
   loading: false,
 };
 
-const reducer = (state = initialState, action) => {
+export default function profile (state = initialState, action)  {
   switch (action.type) {
     case Types.PROFILE_START:
       return { ...state, error: null, loading: true,success:false };
@@ -90,4 +90,4 @@ export const Creators = {
   },
 };
 
-export default reducer;
+

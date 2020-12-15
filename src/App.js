@@ -1,21 +1,17 @@
 import "./App.css";
 import React, { useCallback, useEffect } from "react";
 import AuthLayout from "./hoc/Layout/AuthLayout/AuthLayout";
-import SignIn from "./containers/Auth/Forms/SignIn/SignIn";
-import SignUp from "./containers/Auth/Forms/SignUp/SignUp";
-import ResetPassword from "./containers/Auth/Forms/ResetPassword/ResetPassword";
-import NewPassword from "./containers/Auth/Forms/NewPassword/NewPassword"
+
 import GameLayout from "./hoc/Layout/GameLayout/GameLayout";
-import Games from "./containers/Games/Games";
-import NewGame from "./containers/NewGame/NewGame";
+
 import Footer from "./components/UI/Footer/Footer";
-import Logout from "./containers/Auth/Logout/Logout";
-import Profile from "./containers/Profile/Profile";
+
+import {authRoutes,nonAuthRoutes} from "./navegation/Routes";
 import { Creators as AuthCreators } from "./store/reducers/auth";
 
 import { useSelector,useDispatch } from "react-redux";
 
-import { Redirect, Route, Switch } from "react-router-dom";
+
 
 function App(props) {
   const isAuth = useSelector(state=>state.auth.token !== null)
@@ -26,28 +22,14 @@ function App(props) {
   }, [onTryAutoSignIn]);
   let appContent = (
     <AuthLayout>
-      <Switch>
-        
-        <Route path="/register" component={SignUp} />
-        <Route path="/reset" component={ResetPassword} />
-        <Route path="/new_password" component={NewPassword}/>
-        <Route exact path="/" component={SignIn} />
-        <Redirect to="/" />
-      </Switch>
+      {nonAuthRoutes}
     </AuthLayout>
   );
 
   if (isAuth) {
     appContent = (
       <GameLayout>
-        <Switch>
-          <Route path="/logout" component={Logout} />
-          <Route path="/new-bet" component={NewGame} />
-          <Route path="/profile" component={Profile}/>
-          <Route exact path="/" component={Games} />
-
-          <Redirect to="/" />
-        </Switch>
+        {authRoutes}
       </GameLayout>
     );
   }

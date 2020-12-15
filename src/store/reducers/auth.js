@@ -29,7 +29,7 @@ const initialState = {
   success:false
 };
 
-const reducer = (state = initialState, action) => {
+export default function auth (state = initialState, action)  {
   switch (action.type) {
     case Types.AUTH_START:
       return { ...state, error: null, loading: true,success:false };
@@ -130,4 +130,4 @@ export const Creators = {
     return { type: Types.AUTH_FAILED, error };
   },
 };
-export default reducer;
+

@@ -3,17 +3,17 @@ import { Creators as GameCreators } from "../../store/reducers/games";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Games.module.css";
 import { VscArrowRight } from "react-icons/vsc";
-import Pagination from "../../components/Navegation/Pagination/Pagination"
+import Pagination from "../../components/Navegation/Pagination/Pagination";
 import StyledButton from "../../components/UI/StyledComponents/StyledButton";
 import UnStyledLink from "../../components/Navegation/UnStyledLink/UnStyledLink";
 import GameTypes from "../../components/Games/GameTypes";
 import GameCards from "../../components/Games/GameCards";
 const Games = (props) => {
   const types = useSelector((state) => state.games.types);
-  const gameError = useSelector((state)=>state.games.error)
+  const gameError = useSelector((state) => state.games.error);
   const prevGames = useSelector((state) => state.games.prevGames);
 
-  const totalPages = useSelector((state)=> state.games.totalPages );
+  const totalPages = useSelector((state) => state.games.totalPages);
 
   const dispatch = useDispatch();
 
@@ -21,12 +21,13 @@ const Games = (props) => {
     () => dispatch(GameCreators.FetchGameType()),
     [dispatch]
   );
-  const GetPrevGames = useCallback((page) => dispatch(GameCreators.GetGames(page)), [
-    dispatch,
-  ]);
+  const GetPrevGames = useCallback(
+    (page) => dispatch(GameCreators.GetGames(page)),
+    [dispatch]
+  );
   const [filters, SetFilters] = useState([]);
   const [filteredGame, setFilteredGames] = useState(null);
-  const [currentPage,setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleFilter = (fil) => {
     let newFilters = [...filters];
@@ -45,20 +46,20 @@ const Games = (props) => {
     setFilteredGames(filteredContent);
   };
 
-  const handleNextPage = ()=>{
-    setCurrentPage( prevCurrentPage => prevCurrentPage + 1)
-  }
+  const handleNextPage = () => {
+    setCurrentPage((prevCurrentPage) => prevCurrentPage + 1);
+  };
 
-  const handlePrevPage = ()=>{
-    setCurrentPage( prevCurrentPage => prevCurrentPage - 1)
-  }
+  const handlePrevPage = () => {
+    setCurrentPage((prevCurrentPage) => prevCurrentPage - 1);
+  };
 
   useEffect(() => {
     OnInitGames();
   }, [OnInitGames]);
   useEffect(() => {
     GetPrevGames(currentPage);
-  }, [GetPrevGames,currentPage]);
+  }, [GetPrevGames, currentPage]);
 
   useEffect(() => {
     setFilteredGames(prevGames);
@@ -70,23 +71,29 @@ const Games = (props) => {
   if (filteredGame) {
     games = <GameCards cardObjs={filteredGame} />;
   }
-  
+
   return (
     <div className={classes.Games}>
       <div className={classes.GameContent}>
         <div className={classes.GamesHeader}>
           <h3>RECENT GAMES</h3>
           <p>Filters</p>
-          {
-            gameError ? <p style={{fontWeight:"bold", color:"red"}}>{gameError}</p>:           <GameTypes
-            types={types}
-            clickHandler={handleFilter}
-            activeArray={filters}
-          />
-          }
-
+          {gameError ? (
+            <p style={{ fontWeight: "bold", color: "red" }}>{gameError}</p>
+          ) : (
+            <GameTypes
+              types={types}
+              clickHandler={handleFilter}
+              activeArray={filters}
+            />
+          )}
         </div>
-        <Pagination next={handleNextPage} prev={handlePrevPage} currentPage={currentPage} lastPage={totalPages ? totalPages : 1}/>
+        <Pagination
+          next={handleNextPage}
+          prev={handlePrevPage}
+          currentPage={currentPage}
+          lastPage={totalPages ? totalPages : 1}
+        />
         {games}
       </div>
 

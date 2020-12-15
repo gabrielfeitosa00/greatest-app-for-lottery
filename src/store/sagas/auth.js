@@ -1,6 +1,7 @@
 import { put } from "redux-saga/effects";
 import { Creators as AuthCreators } from "../reducers/auth";
 import axios from "axios";
+import {BASE_URL,REDIRECT_URL} from "../../services/api"
 export function* SignUp(action) {
   yield put(AuthCreators.AuthStart());
   const authData = {
@@ -11,7 +12,7 @@ export function* SignUp(action) {
   };
 
   try {
-    const response = yield axios.post("http://127.0.0.1:3333/signup", authData);
+    const response = yield axios.post( `${BASE_URL}signup`, authData);
     yield put(
       AuthCreators.SignUpSuccess(
         response.name,
@@ -37,7 +38,7 @@ export function* SignIn(action) {
   };
 
   try {
-    const response = yield axios.post("http://127.0.0.1:3333/login", authData);
+    const response = yield axios.post(`${BASE_URL}login`, authData);
     yield put(AuthCreators.SignInSuccess(response.data.token));
     yield localStorage.setItem("token", response.data.token);
   } catch (error) {
@@ -60,11 +61,11 @@ export function* ForgotPassword(action) {
   yield put(AuthCreators.AuthStart());
   const authData = {
     email: action.email,
-    redirect_url: `http://localhost:3000/greatest-app-for-lottery/new_password`,
+    redirect_url: REDIRECT_URL,
   };
   try {
     const response = yield axios.post(
-      "http://127.0.0.1:3333/passwords",
+      `${BASE_URL}passwords`,
       authData
     );
     yield put(AuthCreators.ForgotPasswordSuccess());
@@ -86,7 +87,7 @@ export function* UpdatePassword(action) {
   };
   try {
     const response = yield axios.put(
-      "http://127.0.0.1:3333/passwords",
+      `${BASE_URL}passwords`,
       authData
     );
     yield put(AuthCreators.ForgotPasswordSuccess());

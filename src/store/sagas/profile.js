@@ -1,12 +1,13 @@
 import { put } from "redux-saga/effects";
 import { Creators as ProfileCreators } from "../reducers/profile";
+import {BASE_URL} from "../../services/api"
 import axios from "axios";
 
 export function* GetProfile() {
      yield put(ProfileCreators.ProfileStart())
   try {
     const token = localStorage.getItem("token");
-    const response = yield axios.get("http://127.0.0.1:3333/profile", {
+    const response = yield axios.get(`${BASE_URL}profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     
@@ -41,7 +42,7 @@ export function* EditProfile(action) {
         return newObj;
       }, {});
     const response = yield axios.put(
-      `http://127.0.0.1:3333/profile/${localId}`,
+      `${BASE_URL}profile/${localId}`,
       profilePayload,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -52,7 +53,7 @@ export function* EditProfile(action) {
       )
     );
   } catch (error) {
-    console.log("my Error: " ,error)
+    
     if( error.response === undefined){
       yield put(ProfileCreators.UpdateProfileFailed(error.message))
     } else {
