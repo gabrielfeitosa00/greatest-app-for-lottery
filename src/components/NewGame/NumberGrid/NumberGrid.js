@@ -5,7 +5,7 @@ const NumberGrid = ({ max, total,numberClickHandler,bet,color }) => {
   console.log(max, total);
   let gridContent = "loading...";
   if (total) {
-    gridContent = new Array(total).fill(undefined).map((val, index) => (
+    gridContent = new Array(total).fill(undefined).map((val, index) => ( // I did that because the Array constructor method returns undefined pouinters but no pointers to undefined objects, weird I know
       <NumberButton
         key={index + 1}
         onClick={() =>numberClickHandler(index + 1)
