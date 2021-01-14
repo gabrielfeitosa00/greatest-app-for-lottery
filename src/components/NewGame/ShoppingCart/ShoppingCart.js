@@ -75,7 +75,7 @@ const ShoppingCart = ({ newBet, history }) => {
     });
     onPurchase(formattedRequest);
     setCurrentCart([]);
-    history.push("/");
+    
   };
   const formatedTotalPrice = new Intl.NumberFormat("pt", {
     style: "currency",

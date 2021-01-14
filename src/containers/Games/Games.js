@@ -12,7 +12,6 @@ const Games = (props) => {
   const types = useSelector((state) => state.games.types);
   const gameError = useSelector((state) => state.games.error);
   const prevGames = useSelector((state) => state.games.prevGames);
-
   const totalPages = useSelector((state) => state.games.totalPages);
 
   const dispatch = useDispatch();
@@ -56,10 +55,11 @@ const Games = (props) => {
 
   useEffect(() => {
     OnInitGames();
-  }, [OnInitGames]);
+  },[]);
+
   useEffect(() => {
     GetPrevGames(currentPage);
-  }, [GetPrevGames, currentPage]);
+  }, [ currentPage]);
 
   useEffect(() => {
     setFilteredGames(prevGames);
@@ -81,7 +81,7 @@ const Games = (props) => {
           {gameError ? (
             <p style={{ fontWeight: "bold", color: "red" }}>{gameError}</p>
           ) : (
-            <GameTypes
+             <GameTypes
               types={types}
               clickHandler={handleFilter}
               activeArray={filters}
@@ -106,4 +106,4 @@ const Games = (props) => {
   );
 };
 
-export default Games;
+export default React.memo (Games);

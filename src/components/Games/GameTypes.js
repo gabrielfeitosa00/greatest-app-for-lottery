@@ -32,4 +32,4 @@ const GameTypes = (props) => {
 };
 
 
-export default withRouter(GameTypes);
+export default withRouter(React.memo (GameTypes));
